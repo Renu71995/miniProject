@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+<script th:src="@{/js/exportmanifest.js}"></script>
+</head>
+<body>
+	<form th:object="${exportmanifestform}" id="exportmanifestform" method="post">
+		<input type="text" id="flightnumber" th:field="*{flightnumber}" />
+		<button id="mybutton">check</button>
+		<div th:if="${not #lists.isEmpty('*{awbNumberList}')}">
+			<table>
+				<tbody>
+					<tr th:each="shipment:*{awbNumberList}">
+						<td th:text="${shipment}">
+				</tbody>
+			</table>
+		</div>
+	</form>
+</body>
+
+</html>
