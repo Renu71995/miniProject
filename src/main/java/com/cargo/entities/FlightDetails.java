@@ -11,9 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Data;
-
-@Data
 @Entity
 public class FlightDetails implements Serializable {
 
@@ -33,4 +30,114 @@ public class FlightDetails implements Serializable {
 	private Timestamp ata;
 	@OneToMany(mappedBy = "flightDetails")
 	List<BasicBookingDetails> basicBookingDetailsList;
+
+	public FlightDetails(Integer flightId, String flightNumber, String origin, String destination, Date shipmentDate,
+			boolean isManifested, Timestamp std, Timestamp sta, Timestamp atd, Timestamp ata,
+			List<BasicBookingDetails> basicBookingDetailsList) {
+		super();
+		this.flightId = flightId;
+		this.flightNumber = flightNumber;
+		this.origin = origin;
+		this.destination = destination;
+		this.shipmentDate = shipmentDate;
+		this.isManifested = isManifested;
+		this.std = std;
+		this.sta = sta;
+		this.atd = atd;
+		this.ata = ata;
+		this.basicBookingDetailsList = basicBookingDetailsList;
+	}
+
+	public Integer getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(Integer flightId) {
+		this.flightId = flightId;
+	}
+
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+
+	public void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public Date getShipmentDate() {
+		return shipmentDate;
+	}
+
+	public void setShipmentDate(Date shipmentDate) {
+		this.shipmentDate = shipmentDate;
+	}
+
+	public boolean isManifested() {
+		return isManifested;
+	}
+
+	public void setManifested(boolean isManifested) {
+		this.isManifested = isManifested;
+	}
+
+	public Timestamp getStd() {
+		return std;
+	}
+
+	public void setStd(Timestamp std) {
+		this.std = std;
+	}
+
+	public Timestamp getSta() {
+		return sta;
+	}
+
+	public void setSta(Timestamp sta) {
+		this.sta = sta;
+	}
+
+	public Timestamp getAtd() {
+		return atd;
+	}
+
+	public void setAtd(Timestamp atd) {
+		this.atd = atd;
+	}
+
+	public Timestamp getAta() {
+		return ata;
+	}
+
+	public void setAta(Timestamp ata) {
+		this.ata = ata;
+	}
+
+	public List<BasicBookingDetails> getBasicBookingDetailsList() {
+		return basicBookingDetailsList;
+	}
+
+	public void setBasicBookingDetailsList(List<BasicBookingDetails> basicBookingDetailsList) {
+		this.basicBookingDetailsList = basicBookingDetailsList;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

@@ -29,7 +29,7 @@ public class ExportManifestRequestProcessor {
 	 * @return export manifest form
 	 */
 	public ExportManifestForm requestProcessor(FlightDetails flightDetails, ExportManifestForm exportManifestForm) {
-		
+
 		exportManifestForm.setFlightnumber(flightDetails.getFlightNumber());
 		exportManifestForm.setAwbNumberList(flightDetails.getBasicBookingDetailsList().stream()
 				.map(e -> e.getAwbNumber()).collect(Collectors.toList()));
@@ -54,7 +54,9 @@ public class ExportManifestRequestProcessor {
 	 * @return basic booking form
 	 */
 	private static BasicBookingForm convertToBAsicBookingForm(BasicBookingDetails basicBookingDetails) {
-		BasicBookingForm basicBookingForm = new BasicBookingForm();
+		BasicBookingForm basicBookingForm = new BasicBookingForm(basicBookingDetails.getAwbNumber(),
+				basicBookingDetails.getOrigin(), basicBookingDetails.getDestination(),
+				basicBookingDetails.getFlightNumber());
 		basicBookingForm.setAwbNumber(basicBookingDetails.getAwbNumber());
 		basicBookingForm.setDestination(basicBookingDetails.getDestination());
 		basicBookingForm.setOrigin(basicBookingDetails.getOrigin());

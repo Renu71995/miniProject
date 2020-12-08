@@ -10,9 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import lombok.Data;
-
-@Data
 @Entity
 public class BulkBooking implements Serializable {
 
@@ -27,4 +24,38 @@ public class BulkBooking implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "awbNumber", referencedColumnName = "awbNumber", insertable = false, updatable = false)
 	private BasicBookingDetails basicBookingDetails;
+
+	public BulkBooking(Integer bulkId, Integer awbNumber, int pieceNumber, float weight,
+			BasicBookingDetails basicBookingDetails) {
+		super();
+		this.bulkId = bulkId;
+		this.awbNumber = awbNumber;
+		this.pieceNumber = pieceNumber;
+		this.weight = weight;
+		this.basicBookingDetails = basicBookingDetails;
+	}
+
+	public Integer getAwbNumber() {
+		return awbNumber;
+	}
+
+	public void setAwbNumber(Integer awbNumber) {
+		this.awbNumber = awbNumber;
+	}
+
+	public int getPieceNumber() {
+		return pieceNumber;
+	}
+
+	public void setPieceNumber(int pieceNumber) {
+		this.pieceNumber = pieceNumber;
+	}
+
+	public float getWeight() {
+		return weight;
+	}
+
+	public void setWeight(float weight) {
+		this.weight = weight;
+	}
 }
