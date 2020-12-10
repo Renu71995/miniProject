@@ -3,6 +3,7 @@ package com.cargo.services;
 import com.cargo.entities.AWBExecutionDetails;
 
 public class AWBExecutionServiceImpl implements AWBExecutionService{
+	
 
 	@Override
 	public AWBExecutionDetails getAWBexecutionDetails(int awbNumber) {

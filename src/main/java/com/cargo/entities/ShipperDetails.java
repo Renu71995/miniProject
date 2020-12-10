@@ -10,6 +10,7 @@ public class ShipperDetails {
 	private String shipperAddress;
 	private String shipperCountry;
 	private String shipperCity;
+	
 
 	public ShipperDetails(Integer shipperCode, String shipperName, String shipperAddress, String shipperCountry,
 			String shipperCity) {

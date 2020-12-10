@@ -29,7 +29,8 @@ public class FlightDetails implements Serializable {
 	private Timestamp atd;
 	private Timestamp ata;
 	@OneToMany(mappedBy = "flightDetails")
-	List<BasicBookingDetails> basicBookingDetailsList;
+	List<BasicBookingDetails> basicBookingDetailsList; 
+	
 
 	public FlightDetails(Integer flightId, String flightNumber, String origin, String destination, Date shipmentDate,
 			boolean isManifested, Timestamp std, Timestamp sta, Timestamp atd, Timestamp ata,
