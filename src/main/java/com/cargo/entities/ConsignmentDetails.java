@@ -10,7 +10,7 @@ public class ConsignmentDetails {
 	private String consignmentAddress;
 	private String consignmentCountry;
 	private String consignmentCity;
-
+ 
 	public ConsignmentDetails(Integer consignmentCode, String consignmentName, String consignmentAddress,
 			String consignmentCountry, String consignmentCity) {
 		super();

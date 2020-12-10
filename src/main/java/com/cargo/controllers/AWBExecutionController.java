@@ -15,7 +15,7 @@ import com.cargo.services.AWBExecutionService;
 public class AWBExecutionController {
  
 	/** Bean Injection for awb execution service **/
-	@Autowired
+	@Autowired 
 	private AWBExecutionService awbexecutionService;
 
 	@Autowired

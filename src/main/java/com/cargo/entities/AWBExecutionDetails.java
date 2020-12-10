@@ -10,7 +10,7 @@ public class AWBExecutionDetails {
 	private ShipperDetails shipperDetails;
 	private ConsignmentDetails consignmentDetails;
 	private BasicBookingDetails basicBookingDetails;
-	
+	 
 
 	public AWBExecutionDetails(Integer ubrNumber, Integer awbNumber, ShipperDetails shipperDetails,
 			ConsignmentDetails consignmentDetails, BasicBookingDetails basicBookingDetails) {

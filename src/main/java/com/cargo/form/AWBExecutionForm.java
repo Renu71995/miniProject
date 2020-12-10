@@ -7,7 +7,7 @@ public class AWBExecutionForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String flightnumber;
 	private int awbNumber;
-	
+	 
 	public AWBExecutionForm(String flightnumber, int awbNumber) {
 		super();
 		this.flightnumber = flightnumber;
