@@ -1,5 +1,7 @@
 package com.cargo.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -9,11 +11,12 @@ public class AWBExecutionDetails {
 	private Integer awbNumber;
 	private ShipperDetails shipperDetails;
 	private ConsignmentDetails consignmentDetails;
-	private BasicBookingDetails basicBookingDetails;
+	private List<BasicBookingDetails> basicBookingDetails;
 	 
 
+
 	public AWBExecutionDetails(Integer ubrNumber, Integer awbNumber, ShipperDetails shipperDetails,
-			ConsignmentDetails consignmentDetails, BasicBookingDetails basicBookingDetails) {
+			ConsignmentDetails consignmentDetails, List<BasicBookingDetails> basicBookingDetails) {
 		super();
 		this.ubrNumber = ubrNumber;
 		this.awbNumber = awbNumber;
@@ -38,6 +41,18 @@ public class AWBExecutionDetails {
 		this.awbNumber = awbNumber;
 	}
 
+
+
+	
+
+	public List<BasicBookingDetails> getBasicBookingDetails() {
+		return basicBookingDetails;
+	}
+
+	public void setBasicBookingDetails(List<BasicBookingDetails> basicBookingDetails) {
+		this.basicBookingDetails = basicBookingDetails;
+	}
+
 	public ShipperDetails getShipperDetails() {
 		return shipperDetails;
 	}
@@ -54,12 +69,8 @@ public class AWBExecutionDetails {
 		this.consignmentDetails = consignmentDetails;
 	}
 
-	public BasicBookingDetails getBasicBookingDetails() {
-		return basicBookingDetails;
-	}
+	
 
-	public void setBasicBookingDetails(BasicBookingDetails basicBookingDetails) {
-		this.basicBookingDetails = basicBookingDetails;
-	}
+	
 
 }

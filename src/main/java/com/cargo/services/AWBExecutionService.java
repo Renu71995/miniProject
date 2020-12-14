@@ -5,7 +5,7 @@ import com.cargo.entities.AWBExecutionDetails;
 public interface AWBExecutionService {
 	 
 	
-	 AWBExecutionDetails getAWBexecutionDetails(int awbNumber);
+	 AWBExecutionDetails getAWBexecutionDetails(long awbNumber);
 	 
 	 void executeAWBDetails();
 	 

@@ -21,6 +21,9 @@ public class BasicBookingDetails implements Serializable {
 	private String origin;
 	private String destination;
 	private String flightNumber;
+	private String servicecargoclass;
+	private String sccValue;
+	private String code;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "flightNumber", referencedColumnName = "flightNumber", updatable = false, insertable = false)
 	private FlightDetails flightDetails;
@@ -31,9 +34,11 @@ public class BasicBookingDetails implements Serializable {
 	@JoinColumn(name = "awbNumber", referencedColumnName = "awbNumber", updatable = false, insertable = false)
 	private BulkBooking bulkbooking;
 
+
+
 	public BasicBookingDetails(Integer awbNumber, Integer ubrNumber, String awbStatus, String origin,
-			String destination, String flightNumber, FlightDetails flightDetails, ULDdetails uldDetails,
-			BulkBooking bulkbooking) {
+			String destination, String flightNumber, String servicecargoclass, String sccValue, String code,
+			FlightDetails flightDetails, ULDdetails uldDetails, BulkBooking bulkbooking) {
 		super();
 		this.awbNumber = awbNumber;
 		this.ubrNumber = ubrNumber;
@@ -41,6 +46,9 @@ public class BasicBookingDetails implements Serializable {
 		this.origin = origin;
 		this.destination = destination;
 		this.flightNumber = flightNumber;
+		this.servicecargoclass = servicecargoclass;
+		this.sccValue = sccValue;
+		this.code = code;
 		this.flightDetails = flightDetails;
 		this.uldDetails = uldDetails;
 		this.bulkbooking = bulkbooking;
@@ -121,4 +129,29 @@ public class BasicBookingDetails implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getServicecargoclass() {
+		return servicecargoclass;
+	}
+
+	public void setServicecargoclass(String servicecargoclass) {
+		this.servicecargoclass = servicecargoclass;
+	}
+
+	public String getSccValue() {
+		return sccValue;
+	}
+
+	public void setSccValue(String sccValue) {
+		this.sccValue = sccValue;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
 }

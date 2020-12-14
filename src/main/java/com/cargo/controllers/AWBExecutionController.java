@@ -27,44 +27,30 @@ public class AWBExecutionController {
 	 * @param flightNumber
 	 * @return awb execution form page
 	 */
-	@RequestMapping(value = "/awbexecution/listawbdata", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/icargo/awbExecution/listAwbDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String showAWBookingDetails(@ModelAttribute final AWBExecutionForm awbExecutionForm, Model model) {
 
-		if (awbExecutionForm.getFlightnumber() != null) {
-			/*
-			 * awbexecutionprocessor.requestProcessor(
-			 * awbexecutionService.getAWBexecutionDetails(awbExecutionForm.
-			 * getAwbNumber()), awbExecutionForm);
-			 */
+		if (awbExecutionForm.getAwbNumber() != 0 ) {
+			
+			 awbexecutionprocessor.requestProcessorAWBexecution(awbexecutionService.getAWBexecutionDetails(awbExecutionForm.getAwbNumber()), awbExecutionForm);
+			 
 		}
 		model.addAttribute("awbexecutionscreen", awbExecutionForm);
 		return "awbexecutionscreen";
 	}
 
-	@RequestMapping(value = "/awbexecution/listawbdata", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/icargo/awbExecution/executeAwb", method = { RequestMethod.GET, RequestMethod.POST })
 	public String executeAWBBooking(@ModelAttribute final AWBExecutionForm awbExecutionForm, Model model) {
 
-		if (awbExecutionForm.getFlightnumber() != null) {
-			/*
-			 * awbexecutionprocessor.requestProcessor(
-			 * awbexecutionService.getAWBexecutionDetails(awbExecutionForm.
-			 * getAwbNumber()), awbExecutionForm);
-			 */
-		}
+		
 		model.addAttribute("awbexecutionbooking", awbExecutionForm);
 		return "awbexecutionbooking";
 	}
 	
-	@RequestMapping(value = "/awbexecution/listawbdata", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/icargo/awbExecution/saveAwb", method = { RequestMethod.GET, RequestMethod.POST })
 	public String saveAWBDetails(@ModelAttribute final AWBExecutionForm awbExecutionForm, Model model) {
 
-		if (awbExecutionForm.getFlightnumber() != null) {
-			/*
-			 * awbexecutionprocessor.requestProcessor(
-			 * awbexecutionService.getAWBexecutionDetails(awbExecutionForm.
-			 * getAwbNumber()), awbExecutionForm);
-			 */
-		}
+		
 		model.addAttribute("saveawbexecutionscreen", awbExecutionForm);
 		return "saveawbexecutionscreen";
 	}

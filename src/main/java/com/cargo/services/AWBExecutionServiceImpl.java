@@ -6,7 +6,7 @@ public class AWBExecutionServiceImpl implements AWBExecutionService{
 	  
 
 	@Override
-	public AWBExecutionDetails getAWBexecutionDetails(int awbNumber) {
+	public AWBExecutionDetails getAWBexecutionDetails(long awbNumber) {
 		// TODO Auto-generated method stub
 		return null;
 	}
