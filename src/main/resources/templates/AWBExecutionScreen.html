@@ -1,552 +1,505 @@
 <Html>
   
-  <Head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-      Shipment/COnsignment Details Tab
-    </title>
-    <style>
-      .center {
-        padding: 100px 30px 30px 30px;
-        border: 3px solid black;
-        text-align: center;
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  
+      <title>
+        Shipment/Consignment Details Tab
+      </title>
+      <style>
+        .center {
+          padding: 100px 30px 30px 30px;
+          border: 3px solid black;
+          text-align: center;
+          
+        }
+        .left {
+          padding: 15px 0;
+          text-align: left;
+        }
+    
+        .right {
+          
+          float: right;
+        }
+    
+        .thick {
+          border-top: 3px solid black;
+          margin-left:0;
+          margin-right:0;
+          width:100%;
+        }
+    
+        .round {
+          border: 2px solid black;
+          border-radius: 12px;
+          width:40%;     
+          Text-align:left;
+          float:left;
+          padding-left: 25px;
+        }
+    
+        .inner{
+          border: 2px solid black;
+          /* width: 95.5%; */
+          float: center;
+          border-radius: 2px; 
+          padding: 30px 30px 30px 30px;
+        }
+        .divclass{   
+          padding-top:50px;
+          padding-bottom:50px;
+        }
+    
+        .round1{
+          border: 2px solid black;
+          border-radius: 12px;
+          padding: 25px;
+      /* width: 95.5%; */
+          float: center;
+        }
         
-      }
-      .left {
-        padding: 15px 0;
-        text-align: left;
-      }
-  
-      .right {
-        
-        float: right;
-      }
-  
-      .thick {
-        border-top: 3px solid black;
-        margin-left:0;
-        margin-right:0;
-        width:100%;
-      }
-  
-      .round {
-        border: 2px solid black;
-        border-radius: 12px;
-        width:40%;     
-        Text-align:left;
-        float:left;
-        padding-left: 25px;
-      }
-  
-      .inner{
-        border: 2px solid black;
-        width: 95.5%;
-        float: center;
-        border-radius: 2px; 
-        padding: 30px 30px 30px 30px;
-      }
-      .divclass{   
-        padding-top:50px;
-        padding-bottom:50px;
-      }
-  
-      .round1{
-        border: 2px solid black;
-        border-radius: 12px;
-        padding: 25px;
-      }
-      .border{
-        border: 2px solid black;
-        padding: 25px;
-      }
-  
-      .center2{
-        padding: 20px 20px 20px 20px;
-        border-collapse: separate;
-        border-spacing: 0 15px;
-        text-align: center;
-        display: flex;
-        justify-content: space-around;
-      }
-      .center1{
-        border-collapse: separate;
-        border-spacing: 0 15px;
-        column-gap:20px;
-        text-align: center;
-      }
-  
-  
-      .minusbutton {
+    
+        .center2{
+          padding: 20px 20px 20px 20px;
+          border-collapse: separate;
+          border-spacing: 0 15px;
+          text-align: center;
+          display: flex;
+          justify-content: space-around;
+        }
+        .center1{
+          border-collapse: separate;
+          border-spacing: 0 15px;
+          column-gap:20px;
+          text-align: center;
+        }
+    
+    
+        .minusbutton {
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        } 
+    
+        .plusbutton {
           border-radius: 50%;
           border: none;
-          font-size: 17px;
-          font-weight: bold;
+          font-size: 20px;
           color: white;
-          background-color: red;
-      } 
-  
-      .plusbutton {
-        border-radius: 50%;
-        border: none;
-        font-size: medium;
-        color: white;
-        background-color: red;
-      }
-    </style>
-  
-    <script language="javascript">
-  
-      function addShipmentRow(tableid) {
-        var table = document.getElementById(tableid);
-  
-        var rowCount = table.rows.length;
-        var row = table.insertRow(rowCount);
-  
-                   var cell1 = row.insertCell(0);
-                  var element1 = document.createElement("input");
-                  element1.type = "checkbox";
-                  element1.name="chkbox[]";
-                  cell1.appendChild(element1);
-      
-                  var cell2 = row.insertCell(1);
-                  var element2 = document.createElement("input");
-                  element2.type = "text";
-                  element2.name = "txtbox[]";
-                  cell2.appendChild(element2);
-                  // cell2.innerHTML = rowCount + 1;
-      
-                  var cell3 = row.insertCell(2);
-                  var element3 = document.createElement("input");
-                  element3.type = "text";
-                  element3.name = "txtbox[]";
-                  cell3.appendChild(element3);
-  
-                   var cell4 = row.insertCell(3);
-                  var element4 = document.createElement("input");
-                  element4.type = "text";
-                  element4.name = "txtbox[]";
-                  cell4.appendChild(element4);
-  
-                   var cell5 = row.insertCell(4);
-                  var element5 = document.createElement("input");
-                  element5.type = "text";
-                  element5.name = "txtbox[]";
-                  cell5.appendChild(element5);
-  
-                   var cell6 = row.insertCell(5);
-                  var element6 = document.createElement("input");
-                  element6.type = "text";
-                  element6.name = "txtbox[]";
-                  cell6.appendChild(element6);
-  
-      }  
-  
-      function deleteShipmentRow(tableid) {
-        try {
-          var table = document.getElementById(tableid);
-          var rowCount = table.rows.length;
-  
-          for (var i = 0; i < rowCount; i++) {
-            var row = table.rows[i];
-            var chkbox = row.cells[0].childNodes[0];
-            if (null != chkbox && true == chkbox.checked) {
-              if (rowCount <= 1) {
-                alert("Cannot delete all the rows.");
-                break;
-              }
-              table.deleteRow(i);
-              rowCount--;
-              i--;
-            }
-  
-  
-          }
-        } catch (e) {
-          alert(e);
         }
-      }
-  
-   function addRow(tableid) {
-  
-        var table = document.getElementById(tableid);
-  
-        var rowCount = table.rows.length;
-        var row = table.insertRow(rowCount);
-  
-          var cell1 = row.insertCell(0);
-          var element1 = document.createElement("input");
-          element1.type = "checkbox";
-          element1.name="chkbox[]";
-          cell1.appendChild(element1);
-  
-          var cell2 = row.insertCell(1);
-          var element2 = document.createElement("input");
-          element2.type = "text";
-          element2.name = "txtbox[]";
-          cell2.appendChild(element2);
-          // cell2.innerHTML = rowCount + 1;
-  
-          var cell3 = row.insertCell(2);
-          var element3 = document.createElement("input");
-          element3.type = "text";
-          element3.name = "txtbox[]";
-          cell3.appendChild(element3);
-  
-            var cell4 = row.insertCell(3);
-          var element4 = document.createElement("input");
-          element4.type = "text";
-          element4.name = "txtbox[]";
-          cell4.appendChild(element4);
-  
-            var cell5 = row.insertCell(4);
-          var element5 = document.createElement("input");
-          element5.type = "text";
-          element5.name = "txtbox[]";
-          cell5.appendChild(element5);
-  
-            var cell6 = row.insertCell(5);
-          var element6 = document.createElement("input");
-          element6.type = "text";
-          element6.name = "txtbox[]";
-          cell6.appendChild(element6);
-  
-          var cell7 = row.insertCell(6);
-          var element7 = document.createElement("input");
-          element7.type = "text";
-          element7.name = "txtbox[]";
-          cell7.appendChild(element7);
-  
-          var cell8 = row.insertCell(7);
-          var element8 = document.createElement("input");
-          element8.type = "text";
-          element8.name = "txtbox[]";
-          cell8.appendChild(element8);
-      }
-  
-      function deleteRow(tableid) {
-        try {
+      </style>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+      <script language="javascript">
+    
+        function addShipmentRow(tableid) {
           var table = document.getElementById(tableid);
+    
           var rowCount = table.rows.length;
-  
-          for (var i = 0; i < rowCount; i++) {
-            var row = table.rows[i];
-            var chkbox = row.cells[0].childNodes[0];
-            if (null != chkbox && true == chkbox.checked) {
-              if (rowCount <= 1) {
-                alert("Cannot delete all the rows.");
-                break;
+          var row = table.insertRow(rowCount);
+    
+                     var cell1 = row.insertCell(0);
+                    var element1 = document.createElement("input");
+                    element1.type = "checkbox";
+                    element1.name="chkbox[]";
+                    cell1.appendChild(element1);
+        
+                    var cell2 = row.insertCell(1);
+                    var element2 = document.createElement("input");
+                    element2.type = "text";
+                    element2.name = "txtbox[]";
+                    cell2.appendChild(element2);
+                    // cell2.innerHTML = rowCount + 1;
+        
+                    var cell3 = row.insertCell(2);
+                    var element3 = document.createElement("input");
+                    element3.type = "text";
+                    element3.name = "txtbox[]";
+                    cell3.appendChild(element3);
+    
+                     var cell4 = row.insertCell(3);
+                    var element4 = document.createElement("input");
+                    element4.type = "text";
+                    element4.name = "txtbox[]";
+                    cell4.appendChild(element4);
+    
+                     var cell5 = row.insertCell(4);
+                    var element5 = document.createElement("input");
+                    element5.type = "text";
+                    element5.name = "txtbox[]";
+                    cell5.appendChild(element5);
+    
+                     var cell6 = row.insertCell(5);
+                    var element6 = document.createElement("input");
+                    element6.type = "text";
+                    element6.name = "txtbox[]";
+                    cell6.appendChild(element6);
+    
+        }  
+    
+        function deleteShipmentRow(tableid) {
+          try {
+            var table = document.getElementById(tableid);
+            var rowCount = table.rows.length;
+    
+            for (var i = 0; i < rowCount; i++) {
+              var row = table.rows[i];
+              var chkbox = row.cells[0].childNodes[0];
+              if (null != chkbox && true == chkbox.checked) {
+                if (rowCount <= 1) {
+                  alert("Cannot delete all the rows.");
+                  break;
+                }
+                table.deleteRow(i);
+                rowCount--;
+                i--;
               }
-              table.deleteRow(i);
-              rowCount--;
-              i--;
+    
+    
             }
+          } catch (e) {
+            alert(e);
           }
-        } catch (e) {
-          alert(e);
         }
-      }
-  
-    </script>
-  
-  </Head>
-  
-  <Body>
-    <div class = "center" id = "outermostDiv">
-    <form>    
-      <label for="awbn">AWB Number:</label>
-      <input type="text" id="awbn" name="awbn">
-      <input type="text" id="awbn" name="awbn">
-  
-      <label for="ubr">UBR Number:</label>
-      <input type="text" id="ubrn" name="ubrn">
-      <input type="submit" value="NewList">
-      <input type="submit" value="Clear">
-   
-       <hr class = "thick">
-  
-      <div class = "divclass" id = "originDiv">
-  
-        <label for="origin">Origin:</label>
-        <input type="text" id="origin" name="origin">
-      
-        <label for="destination">Destination:</label>
-       <input type="text" id="destination" name="destination">
-  
-        <label for="ServiceClass">Service Cargo Class:</label>
-        <select name="sclass" id="sclass">
-            <option value="FreeCharge">Free of Charge</option>
-            <option value="Comat">Comat</option>
-            
-       </select>
-  
-  
-       <label for="SCC">SCC:</label>
-        <input type="text" id="scc" name="scc">
-      
-        <label for="Code">Code:</label>
-        <input type="text" id="code" name="code">
-  
-      </div>    <!-- End of originDiv -->
-      <div id = "shipperconsignmentDiv" class = "inner">
-        <p class = "left"><strong>SHIPPER/CONSIGNMENT DETAILS</strong></p>
-  
-      <div id = "outerDiv" style= "display: flex;justify-content: space-around;"> 	
-  
-      <div class = "round" id = "innerDiv" >
-              <p class = "left"><strong>SHIPPER DETAILS</strong></p>
-             <form>
-               
-             <label for="Code">Code:</label>
-              <br>	 
-              <input type="text" id="code" name="code">
-               <br>
-               <label for="Name">Name:</label>
-        <br>	 
-                    <input type="text" id="name" name="name">
-                <br>
-              <label for="Address">Address:</label>
-        <br>	 
-                  <input type="text" id="address" name="address">
-                    <br>
-                   <label for="City">City:</label>
-              <br>	 
-                    <input type="text" id="city" name="city">
-                    <br>
-                    <label for="Country">Country:</label>
-              <br>	 
-                     <input type="text" id="country" name="country">
-                   <br>
-                
-                     </form>
-                  </div>   <!-- End of innerDiv -->
-  
-  
-            <div class = "round" id = "innerDiv2" >
-                   <form>
-                    <p class = "left"><strong>CONSIGNMENT DETAILS</strong></p>
-                  <label for="Code">Code:</label>
-                 <br>	 
-                       <input type="text" id="code1" name="code1">
+    
+     function addRow(tableid) {
+    
+          var table = document.getElementById(tableid);
+    
+          var rowCount = table.rows.length;
+          var row = table.insertRow(rowCount);
+    
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+            element1.name="chkbox[]";
+            cell1.appendChild(element1);
+    
+            var cell2 = row.insertCell(1);
+            var element2 = document.createElement("input");
+            element2.type = "text";
+            element2.name = "txtbox[]";
+            element2.style.width = "98%";
+            cell2.appendChild(element2);
+            // cell2.innerHTML = rowCount + 1;
+    
+            var cell3 = row.insertCell(2);
+            var element3 = document.createElement("input");
+            element3.type = "text";
+            element3.name = "txtbox[]";
+            element3.style.width = "101%";
+            cell3.appendChild(element3);
+    
+              var cell4 = row.insertCell(3);
+            var element4 = document.createElement("input");
+            element4.type = "text";
+            element4.name = "txtbox[]";
+            cell4.appendChild(element4);
+    
+              var cell5 = row.insertCell(4);
+            var element5 = document.createElement("input");
+            element5.type = "text";
+            element5.name = "txtbox[]";
+            cell5.appendChild(element5);
+    
+              var cell6 = row.insertCell(5);
+            var element6 = document.createElement("input");
+            element6.type = "text";
+            element6.name = "txtbox[]";
+            cell6.appendChild(element6);
+    
+            var cell7 = row.insertCell(6);
+            var element7 = document.createElement("input");
+            element7.type = "text";
+            element7.name = "txtbox[]";
+            cell7.appendChild(element7);
+    
+            var cell8 = row.insertCell(7);
+            var element8 = document.createElement("input");
+            element8.type = "text";
+            element8.name = "txtbox[]";
+            cell8.appendChild(element8);
+        }
+    
+        function deleteRow(tableid) {
+          try {
+            var table = document.getElementById(tableid);
+            var rowCount = table.rows.length;
+    
+            for (var i = 0; i < rowCount; i++) {
+              var row = table.rows[i];
+              var chkbox = row.cells[0].childNodes[0];
+              if (null != chkbox && true == chkbox.checked) {
+                if (rowCount <= 1) {
+                  alert("Cannot delete all the rows.");
+                  break;
+                }
+                table.deleteRow(i);
+                rowCount--;
+                i--;
+              }
+            }
+          } catch (e) {
+            alert(e);
+          }
+        }
+    
+      </script>
+    
+    </Head>
+    
+    <Body>
+      <div class = "center" id = "outermostDiv">
+      <form>    
+        <label for="awbn">AWB Number:</label>
+        <input type="text" id="awbn" name="awbn">
+        <input type="text" id="awbn" name="awbn">
+    
+        <label for="ubr">UBR Number:</label>
+        <input type="text" id="ubrn" name="ubrn">
+        <input type="submit"  class="btn btn-primary" value="List">
+        <input type="submit" class="btn btn-danger" value="Clear">
+     
+         <hr class = "thick">
+    
+        <div class = "divclass" id = "originDiv">
+    
+          <label for="origin">Origin:</label>
+          <input type="text" id="origin" name="origin">
+        
+          <label for="destination">Destination:</label>
+         <input type="text" id="destination" name="destination">
+    
+          <label for="ServiceClass">Service Cargo Class:</label>
+          <select name="sclass" id="sclass">
+              <option value="FreeCharge">Free of Charge</option>
+              <option value="Comat">Comat</option>
+              
+         </select>
+    
+    
+         <label for="SCC">SCC:</label>
+          <input type="text" id="scc" name="scc">
+        
+          <label for="Code">Code:</label>
+          <input type="text" id="code" name="code">
+    
+        </div>    <!-- End of originDiv -->
+        <div id = "shipperconsignmentDiv" class = "inner">
+          <p class = "left"><strong>SHIPPER/CONSIGNMENT DETAILS</strong></p>
+    
+        <div id = "outerDiv" style= "display: flex;justify-content: space-around;"> 	
+    
+        <div class = "round" id = "innerDiv" >
+                <p class = "left"><strong>SHIPPER DETAILS</strong></p>
+               <form>
+                 
+               <label for="Code">Code:</label>
+                <br>	 
+                <input type="text" id="code" name="code">
+                 <br>
+                 <label for="Name">Name:</label>
+          <br>	 
+                      <input type="text" id="name" name="name">
                   <br>
-                    <label for="Name">Name:</label>
-              <br>	 
-                     <input type="text" id="name1" name="name1">
+                <label for="Address">Address:</label>
+          <br>	 
+                    <input type="text" id="address" name="address">
+                      <br>
+                     <label for="City">City:</label>
+                <br>	 
+                      <input type="text" id="city" name="city">
+                      <br>
+                      <label for="Country">Country:</label>
+                <br>	 
+                       <input type="text" id="country" name="country">
+                     <br>
+                  
+                       </form>
+                    </div>   <!-- End of innerDiv -->
+    
+    
+              <div class = "round" id = "innerDiv2" >
+                     <form>
+                      <p class = "left"><strong>CONSIGNMENT DETAILS</strong></p>
+                    <label for="Code">Code:</label>
+                   <br>	 
+                         <input type="text" id="code1" name="code1">
                     <br>
-                    <label for="Address">Address:</label>
-              <br>	 
-                    <input type="text" id="address1" name="address1">
-                    <br>
-                    <label for="City">City:</label>
-               <br>	 
-                    <input type="text" id="city1" name="city1">
-                    <br>
-                    <label for="Country">Country:</label>
-               <br>	 
-                    <input type="text" id="country1" name="country1">
-                    <br>
-                    </form>
-          </div>   <!-- End of innerDiv2 -->
-  
-        </div>   <!-- End of outerDiv -->
-  
-      </div>   <!-- End of shipperconsignmentDiv -->
-  
-       </form>
-  
-      <!-- Keerthana -->
-  
-      <div class="border" id="outerDiv1">
-  <p class = "left"><strong>SHIPMENT DETAILS</strong></p>
-  
+                      <label for="Name">Name:</label>
+                <br>	 
+                       <input type="text" id="name1" name="name1">
+                      <br>
+                      <label for="Address">Address:</label>
+                <br>	 
+                      <input type="text" id="address1" name="address1">
+                      <br>
+                      <label for="City">City:</label>
+                 <br>	 
+                      <input type="text" id="city1" name="city1">
+                      <br>
+                      <label for="Country">Country:</label>
+                 <br>	 
+                      <input type="text" id="country1" name="country1">
+                      <br>
+                      </form>
+            </div>   <!-- End of innerDiv2 -->
+    
+          </div>   <!-- End of outerDiv -->
+    
+        </div>   <!-- End of shipperconsignmentDiv -->
+    
+         </form>
+    
+        <!-- Keerthana -->
+    
+        <div class="inner" id="outerDiv1">
+    <p class = "left"><strong>SHIPMENT DETAILS</strong></p>
     <table class="center2">
-  
-     <tr>
-    
-        <td style="text-align: center;padding:0 15px; ">
-  
-          <form action="/action_page.php">
-    <label for="unit">Weight Unit </label>
-    <select name="unit" id="unit">
-      <option value="pound">Pound</option>
-      <option value="kilo">Kilogram</option>
-     
-    </select>
-    
-  </form>
-  
-        </td>
-    
-        <td style="text-align: center;padding:0 15px; ">
-  
-            <form action="/action_page.php">
-    <label for="unit">Volume Unit </label>
-    <select name="unit" id="unit">
-      <option value="feet">Cubic feet</option>
-      <option value="meters">Cubic meters</option>
-     
-    </select>
-    
-  </form>
-  
-        </td>
-  
-      
-      <td style="text-align: center; padding:0 15px;">
-          <INPUT type="button" id = "addshipment" class = "plusbutton" value="+" onclick="addShipmentRow('dataTableShipment')" />
-  
-          <INPUT type="button" id = "deleteShipment" class = "minusbutton" value="-" onclick="deleteShipmentRow('dataTableShipment')" />
-        </td>
-    
-    </tr>
-    </table>
-    <table class="center2">
-      <tr>
-        <td>
-          <table id="dataTableShipment" width="350px" border="1">
-            <tr>
-              <td></td>
-              <td>Pieces</td>
-              <td>Weight</td>
-              <td>Volume</td>
-              <td>Cmdty Code</td>
-        <td>ULD Type</td>
-  
-            </tr>
-            <tr>
-              <TD>
-                <INPUT type="checkbox" name="chk" />
-              </TD>
-              <td>
-                <input type="text" id="pieces" name="pieces">
-              </td>
-              <td>
-                <input type="text" id="weight" name="weight">
-              </td>
-              <td>
-                <input type="text" id="volume" name="volume">
-              </td>
-              <td>
-                <input type="text" id="cmdty" name="cmdty">
-              </td>
-        <td>
-                <input type="text" id="uld" name="uld">
-              </td>
-            </tr>
-          </table>
-        </td>
-      
-      </tr>
-    </table>
-     <div class="round1" id="innerDiv1"> 
-  <table class="center1">
-    
     <tr>
-    <td style="text-align: left;  padding:0 15px;">
-    <label for="Stated Pieces">Stated Pieces</label>
-    <br/>
-    <input name="statedPieces" id="statedPieces" type="number"/>
-    </td>
-    <td style="text-align: left; padding:0 15px;">
-    <label for="Stated Weight">Stated Weight</label>
-    </br>
-    <input name="statedWeight" id="statedWeight" type="number"/>
-    </td>
-    <td style="text-align: left; padding:0 15px;">
-    <label for="Stated Volume">Stated Volume</label>
-    </br>
-    <input name="statedVolume" id="statedVolume" type="number"/>
-    </td>
-    <td style="text-align: left;padding:0 15px;">
-    <label for="SLAC Pieces">SLAC Pieces</label>
-    </br>
-    <input name="slacPieces" id="slacPieces" type="number"/>
-    <br/>
-    </td>
-    </tr>
-    <tr>
-    <td style="text-align: left; padding:0 15px;">
-    <label for="Shipment Description">Shipment Description</label>
-    <br/>
-    <textarea rows="4" cols="30" name="desc" form="usrform">
-  </textarea>
-    </td>
-    <tr>
-  
-    </table>
-     </div> 
-    </div>
-  
-      <!-- End of Keerthana code-->
-  
-     <!-- Aishwarya -->
-  
-      <br>
-      <div class = "border">
-  
-      <p class = "left"><strong>DIMENSION</strong></p>
-    <table>
-      <tr>
-        <td style="text-align: right; padding: 7px;">
-          <INPUT type="button" class = "plusbutton" value="+" onclick="addRow('dataTable3')" />
-  
-          <INPUT type="button" class = "minusbutton" value="-" onclick="deleteRow('dataTable3')" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <table id="dataTable3" width="350px" border="1">
-            <tr>
-              <td></td>
-              <td>No. of pieces</td>
-              <td>Weight(Pound)</td>
-              <td>Lenght(Inches)</td>
-              <td>Width(Inches)</td>
-              <td>Height(Inches)</td>
-              <td>Volume(Cubic feet)</td>
-              <td>Tiltable</td>
-            </tr>
-            <tr>
-              <TD>
-                <INPUT type="checkbox" name="chk" />
-              </TD>
-              <td>
-                <input type="text" id="pcs" name="pcs">
-              </td>
-              <td>
-                <input type="text" id="weight" name="weight">
-              </td>
-              <td>
-                <input type="text" id="length" name="length">
-              </td>
-              <td>
-                <input type="text" id="width" name="width">
-              </td>
-              <td>
-                <input type="text" id="height" name="height">
-              </td>
-              <td>
-                <input type="text" id="volume" name="volume">
-              </td>
-              <td>
-                <input type="text" id="tiltable" name="tiltable">
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-  
-      </div>
-      
-      <div class = "divclass" id = "buttonDiv">
-  
-          <input type="submit" value="Execute">
-          <input type="submit" value="Print">
-          <input type="submit" value="Save">
-  
-      </div>  <!-- End of buttonnDiv -->
-  
-  
-   </div>   <!-- End of outermostDiv -->
-  </Body>
-  </Html>
+    <td>
+      <form action="/action_page.php">
+        <label for="unit">Weight Unit </label>
+        <select name="unit" id="unit">
+          <option value="pound">Pound</option>
+          <option value="kilo">Kilogram</option>  
+        </select>
+        <label for="unit">Volume Unit </label>
+        <select name="unit" id="unit">
+          <option value="feet">Cubic feet</option>
+          <option value="meters">Cubic meters</option>  
+        </select>  
+    </form>
+  </td>
+  <td>
+            <INPUT type="button" id = "addshipment" class = "plusbutton btn btn btn-primary" value="+" onclick="addShipmentRow('dataTableShipment')" />
+    
+            <INPUT type="button" id = "deleteShipment" class = "minusbutton btn btn-danger" value="-" onclick="deleteShipmentRow('dataTableShipment')" />
+  </td> 
+   </tr>
+        <tr>
+          <td>
+            <table id="dataTableShipment" width="350px" border="1">
+              <tr>
+                <td></td>
+                <td>Pieces</td>
+                <td>Weight</td>
+                <td>Volume</td>
+                <td>Cmdty Code</td>
+          <td>ULD Type</td>
+    
+              </tr>
+              <tr>
+                <TD>
+                  <INPUT type="checkbox" name="chk" />
+                </TD>
+                <td>
+                  <input type="text" id="pieces" name="pieces">
+                </td>
+                <td>
+                  <input type="text" id="weight" name="weight">
+                </td>
+                <td>
+                  <input type="text" id="volume" name="volume">
+                </td>
+                <td>
+                  <input type="text" id="cmdty" name="cmdty">
+                </td>
+          <td>
+                  <input type="text" id="uld" name="uld">
+                </td>
+              </tr>
+            </table>
+          </td>   
+        </tr>
+      </table>
+       <div class="round1" id="innerDiv1"> 
+         <form>
+            <label for="Stated Pieces">Stated Pieces</label>
+            <input name="statedPieces" id="statedPieces" type="number"/>
+            <label for="Stated Weight">Stated Weight</label>
+            <input name="statedWeight" id="statedWeight" type="number"/>
+            <label for="Stated Volume">Stated Volume</label>
+            <input name="statedVolume" id="statedVolume" type="number"/>
+            <label for="SLAC Pieces">SLAC Pieces</label>
+            <input name="slacPieces" id="slacPieces" type="number"/>
+             <br/> <br/>
+            <label for="Shipment Description">Shipment Description</label>
+            <textarea rows="4" cols="30" name="desc" form="usrform">
+            </textarea>
+          </form>
+       </div> 
+        <!-- End of Keerthana code-->
+       <!-- Aishwarya -->
+        <br>
+        <div class = "inner">
+        <p class = "left"><strong>DIMENSION</strong></p>
+      <table >
+        <tr>
+          <td style="text-align: right; padding: 7px;">
+            <INPUT type="button" class = "plusbutton btn btn-primary" value="+" onclick="addRow('dataTable3')" />
+    
+            <INPUT type="button" class = "minusbutton btn btn-danger" value="-" onclick="deleteRow('dataTable3')" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="dataTable3" border="1">
+              <tr>
+                <td></td>
+                <td>No. of pcs</td>
+                <td>Weight(Pound)</td>
+                <td>Length(Inches)</td>
+                <td>Width(Inches)</td>
+                <td>Height(Inches)</td>
+                <td>Volume(Cubic feet)</td>
+                <td>Tiltable</td>
+              </tr>
+              <tr>
+                <TD>
+                  <INPUT type="checkbox" name="chk" />
+                </TD>
+                <td>
+                  <input type="text" id="pcs" name="pcs" size= "7%">
+                </td>
+                <td>
+                  <input type="text" id="weight" name="weight" size="15%">
+                </td>
+                <td>
+                  <input type="text" id="length" name="length">
+                </td>
+                <td>
+                  <input type="text" id="width" name="width">
+                </td>
+                <td>
+                  <input type="text" id="height" name="height">
+                </td>
+                <td>
+                  <input type="text" id="volume" name="volume">
+                </td>
+                <td>
+                  <input type="text" id="tiltable" name="tiltable">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    
+        </div>
+        
+        <div class = "divclass" id = "buttonDiv">
+    
+            <input type="submit" class="btn btn-warning" value="Execute">
+            <input type="submit" class="btn btn-info" value="Print">
+            <input type="submit" class="btn btn-success" value="Save">
+    
+        </div>  <!-- End of buttonnDiv -->
+    
+    
+     </div>   <!-- End of outermostDiv -->
+    </Body>
+    </Html>
