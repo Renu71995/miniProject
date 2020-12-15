@@ -9,12 +9,20 @@ public class BasicBookingForm implements Serializable {
 	private Integer awbNumber;
 	private String origin;
 	private String destination;
+	private String servicecargoclass;
+	private String sccValue;
+	private String code;
+	private String flightNumber;
 
-	public BasicBookingForm(Integer awbNumber, String origin, String destination, String flightNumber) {
+	public BasicBookingForm(Integer awbNumber, String origin, String destination, String servicecargoclass,
+			String sccValue, String code, String flightNumber) {
 		super();
 		this.awbNumber = awbNumber;
 		this.origin = origin;
 		this.destination = destination;
+		this.servicecargoclass = servicecargoclass;
+		this.sccValue = sccValue;
+		this.code = code;
 		this.flightNumber = flightNumber;
 	}
 
@@ -54,5 +62,28 @@ public class BasicBookingForm implements Serializable {
 		return serialVersionUID;
 	}
 
-	private String flightNumber;
+	public String getServicecargoclass() {
+		return servicecargoclass;
+	}
+
+	public void setServicecargoclass(String servicecargoclass) {
+		this.servicecargoclass = servicecargoclass;
+	}
+
+	public String getSccValue() {
+		return sccValue;
+	}
+
+	public void setSccValue(String sccValue) {
+		this.sccValue = sccValue;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 }

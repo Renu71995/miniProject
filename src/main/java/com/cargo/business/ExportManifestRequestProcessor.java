@@ -56,7 +56,7 @@ public class ExportManifestRequestProcessor {
 	private static BasicBookingForm convertToBAsicBookingForm(BasicBookingDetails basicBookingDetails) {
 		BasicBookingForm basicBookingForm = new BasicBookingForm(basicBookingDetails.getAwbNumber(),
 				basicBookingDetails.getOrigin(), basicBookingDetails.getDestination(),
-				basicBookingDetails.getFlightNumber());
+				basicBookingDetails.getFlightNumber(), null, null, null);
 		basicBookingForm.setAwbNumber(basicBookingDetails.getAwbNumber());
 		basicBookingForm.setDestination(basicBookingDetails.getDestination());
 		basicBookingForm.setOrigin(basicBookingDetails.getOrigin());
