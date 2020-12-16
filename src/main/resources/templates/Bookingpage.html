@@ -1,429 +1,514 @@
+
+
 <Html>
 
-<Head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>
-    Example of Paragraph tag
-  </title>
-  <style>
-  
-    .center {
-      padding: 70px 0;
-      border: 3px solid green;
-      text-align: center;
-    }
-
-    table,
-    th,
-    td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-
-    th,
-    td {
-      padding: 3px;
-    }
-
-
-    * {
-      box-sizing: border-box;
-    }
-
-    .openBtn {
-      display: flex;
-      justify-content: left;
-    }
-
-    .openButton {
-      border: none;
-      border-radius: 5px;
-      background-color: #1c87c9;
-      color: white;
-      padding: 14px 20px;
-      cursor: pointer;
-      position: fixed;
-    }
-
-    .selectFlightPopup {
-      position: relative;
-      text-align: center;
-      width: 100%;
-    }
-
-    .formPopup {
-      display: none;
-      position: fixed;
-      left: 45%;
-      top: 5%;
-      transform: translate(-50%, 5%);
-      border: 3px solid #999999;
-      z-index: 9;
-    }
-
-    .formContainer {
-      max-width: 300px;
-      padding: 20px;
-      background-color: #fff;
-    }
-
-    .formContainer input[type=text],
-    .formContainer input[type=password] {
-      width: 100%;
-      padding: 15px;
-      margin: 5px 0 20px 0;
-      border: none;
-      background: #eee;
-    }
-
-    .formContainer input[type=text]:focus,
-    .formContainer input[type=password]:focus {
-      background-color: #ddd;
-      outline: none;
-    }
-
-    .formContainer .btn {
-      padding: 12px 20px;
-      border: none;
-      background-color: #8ebf42;
-      color: #fff;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 15px;
-      opacity: 0.8;
-    }
-
-    .formContainer .cancel {
-      background-color: #cc0000;
-    }
-
-    .formContainer .btn:hover,
-    .openButton:hover {
-      opacity: 1;
-    }
-    .row {
-     display: flex;
-    }
-
-    .column {
-      flex: 50%;
-      padding: 5px;
-    }
-  </style>
-  <SCRIPT language="javascript">
-    function addRow(tableID) {
-
-      var table = document.getElementById(tableID);
-
-      var rowCount = table.rows.length;
-      var row = table.insertRow(rowCount);
-
-                 var cell1 = row.insertCell(0);
-                var element1 = document.createElement("input");
-                element1.type = "checkbox";
-                element1.name="chkbox[]";
-                cell1.appendChild(element1);
-    
-                var cell2 = row.insertCell(1);
-                var element2 = document.createElement("input");
-                element2.type = "text";
-                element2.name = "txtbox[]";
-                cell2.appendChild(element2);
-                // cell2.innerHTML = rowCount + 1;
-    
-                var cell3 = row.insertCell(2);
-                var element3 = document.createElement("input");
-                element3.type = "text";
-                element3.name = "txtbox[]";
-                cell3.appendChild(element3);
-
-                 var cell4 = row.insertCell(3);
-                var element4 = document.createElement("input");
-                element4.type = "text";
-                element4.name = "txtbox[]";
-                cell4.appendChild(element4);
-
-                 var cell5 = row.insertCell(4);
-                var element5 = document.createElement("input");
-                element5.type = "text";
-                element5.name = "txtbox[]";
-                cell5.appendChild(element5);
-    }
-
-    function deleteRow(tableID) {
-      try {
-        var table = document.getElementById(tableID);
-        var rowCount = table.rows.length;
-
-        for (var i = 0; i < rowCount; i++) {
-          var row = table.rows[i];
-          var chkbox = row.cells[0].childNodes[0];
-          if (null != chkbox && true == chkbox.checked) {
-            if (rowCount <= 1) {
-              alert("Cannot delete all the rows.");
-              break;
-            }
-            table.deleteRow(i);
-            rowCount--;
-            i--;
-          }
-
-
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+      <title>
+        Maintain Booking
+      </title>
+      <style>
+      
+        .center {
+          padding: 100px 30px 30px 30px;
+          border: 3px solid black;
+          text-align: center;
         }
-      } catch (e) {
-        alert(e);
-      }
-    }
-
-
-  </SCRIPT>
-</Head>
-
-<Body>
-
-  <form class="center">
-
-    <label for="awbn">AWB Number:</label>
-    <input type="text" id="awbn" name="awbn"  maxlength="11" size="11">
-   
-
-    <label for="ubr">UBR Number:</label>
-    <input type="text" id="ubrn" name="ubrn">
-    <input type="submit" value="NewList">
-
-  </form>
-  <p>SHIPMENT DETAILS</p>
-  <form action="/action_page.php" class="center">
-    <label for="origin">origin:</label>
-    <select name="origin" id="origin">
-      <option value="MAX">MAX</option>
-      <option value="USA">USA</option>
-      <option value="MIA">MIA</option>
-      <option value="LAX">LAX</option>
-    </select>
-    <label for="destination">destination:</label>
-    <select name="destination" id="destination">
-      <option value="MAX">MAX</option>
-      <option value="USA">USA</option>
-      <option value="MIA">MIA</option>
-      <option value="LAX">LAX</option>
-    </select>
-
-    <label for="ShipingDate">Shiping Date:</label>
-    <input type="date" id="shipingdate" name="shipingdate">
-
-
-    <br>
-    <br>
-
-    <label for="Agentcode">Agent Code:</label>
-    <select name="origin" id="origin">
-      <option value="MAX">MAX</option>
-      <option value="USA">USA</option>
-      <option value="MIA">MIA</option>
-      <option value="LAX">LAX</option>
-    </select>
-    <label for="agentName">Agent Name:</label>
-    <input type="text" id="agentName" name="agentName">
-
-    <label for="SCC">SCC:</label>
-    <select name="scc" id="scc">
-      <option value="AOG">AOG</option>
-      <option value="AVI">AVI</option>
-      <option value="CC1">CC1</option>
-      <option value="CHI">CHI</option>
-      <option value="CON">CON</option>
-      <option value="EXT">EXT</option>
-      <option value="GEN">GEN</option>
-      <option value="HUM">HUM</option>
-      <option value="ICE">ICE</option>
-      <option value="MED">MED</option>
-      <option value="PER">PER</option>
-      <option value="PIL">PIL</option>
-      <option value="AOG">AOG</option>
-      <option value="RMD">RMD</option>
-      <option value="DGR">DGR</option>
-      <option value="VAL">VAL</option>
-      <option value="SEA">SEA</option>
-    </select>
-    <br>
-    <br>
-
-    <label for="customerCode">Customer Code:</label>
-    <select name="customerCode" id="customerCode">
-      <option value="MAX">MAX</option>
-      <option value="USA">USA</option>
-      <option value="MIA">MIA</option>
-      <option value="LAX">LAX</option>
-    </select>
-    <label for="customerName">Customer Name:</label>
-    <input type="text" id="customerName" name="customerName">
-
-    <label for="ServiceClass">Service Class:</label>
-    <select name="sclass" id="sclass">
-      <option value="FOC">Free of Charge</option>
-      <option value="COMAT">COMAT</option>
-    </select>
-
-  </form>
-  <p>SHIPMENT/ULD</p>
-
-    <div class ="row">
-      <div class="column">
-        <P>Bulk Booking </P>
-        <input type="button" value="Add Row" onclick="addRow('dataTable')" style="margin: 1%" />
-
-        <input type="button" value="Delete Row" onclick="deleteRow('dataTable')" style="margin: 1%" />
-
-        <br>
-
-         <table id="dataTable" width="350px" border="1">
-          <tr>
-            <td></td>
-            <td>CommCode</td>
-            <td>pcs</td>
-            <td>Weight</td>
-            <td>Volume</td>
-          </tr>
-          <tr>
-            <TD>
-              <input type="checkbox" name="chk" />
-            </TD>
-            <td>
-              <input type="text" id="commcode" name="commcode">
-            </td>
-            <td>
-              <input type="text" id="pcs" name="pcs">
-            </td>
-            <td>
-              <input type="text" id="weight" name="weight">
-            </td>
-            <td>
-              <input type="text" id="volume" name="volume">
-            </td>
-          </tr>
-        </table>
-
-      </div>
+        .left {
+          padding: 15px 0;
+          text-align: left;
+        }
+        .inner{
+          border: 2px solid black;
+          padding: 30px 0px 30px 30px;
+          float: center;
+          border-radius: 2px; 
+          
+        }
+    
+        .round {
+          border: 2px solid black;
+          border-radius: 12px;
+          width:48%;     
+          Text-align:left;
+          float:left;
+          padding-left: 25px;
+          
+        }
+    
+        table,
+        th,
+        td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    
+        th,
+        td {
+          padding: 3px;
+        }
+       
+        
+    
+    
+        * {
+          box-sizing: border-box;
+        }
+    
+        .openBtn {
+          display: flex;
+          justify-content: left;
+        }
+    
+        .openButton {
+          border: none;
+          border-radius: 5px;
+          background-color: #1c87c9;
+          color: white;
+          padding: 14px 20px;
+          cursor: pointer;
+          position: fixed;
+        }
+    
+        .selectFlightPopup {
+          position: relative;
+          text-align: center;
+          width: 100%;
+        }
+    
+        .formPopup {
+          display: none;
+          position: fixed;
+          left: 45%;
+          top: 5%;
+          transform: translate(-50%, 5%);
+          border: 3px solid #999999;
+          z-index: 9;
+        }
+    
+        .formContainer {
+          max-width: 300px;
+          padding: 20px;
+          background-color: #fff;
+        }
+    
+        .formContainer input[type=text],
+        .formContainer input[type=password] {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 20px 0;
+          border: none;
+          background: #eee;
+        }
+    
+        .formContainer input[type=text]:focus,
+        .formContainer input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+    
+        .formContainer .btn {
+          padding: 12px 20px;
+          border: none;
+          background-color: #8ebf42;
+          color: #fff;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom: 15px;
+          opacity: 0.8;
+        }
+    
+        .formContainer .cancel {
+          background-color: #cc0000;
+        }
+    
+        .formContainer .btn:hover,
+        .openButton:hover {
+          opacity: 1;
+        }
+        .row {
+         display: flex;
+         justify-content: space-around;
+        }
+    
+        .column {
+          flex: 40%;
+          padding: 5px;
+        }
+        .minusbutton {
+              border-radius: 50%;
+              border: none;
+              font-weight: bold;
+              font-size: 20px;
+              color: white;
+          } 
       
-
-     
-     <div class="column">
-
-        <P>ULD Booking </P>
-        <INPUT type="button" value="Add Row" onclick="addRow('dataTable2')" style="margin: 1%"/>
-
-        <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable2')" style="margin: 1%"/>
-      
-        <table id="dataTable2" width="350px" border="1">
-          <tr>
-            <td></td>
-            <td>ULD Type/Group</td>
-            <td>No.of ULDs</td>
-            <td>ULD Weight</td>
-            <td>CommCode</td>
-          </tr>
-          <tr>
-              <TD>
-                  <INPUT type="checkbox" name="chk" />
-                </TD>
-            <td>
-              <input type="text" id="uldtype" name="uldtype">
-            </td>
-            <td>
-              <input type="text" id="noofulds" name="noofulds">
-            </td>
-            <td>
-              <input type="text" id="uldweight" name="uldweight">
-            </td>
-            <td>
-              <input type="text" id="commcode" name="commcode">
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-
-  <p>FLIGHT DETAILS</p>
-  <table class="center">
-    <tr>
-      <td>
-
-        <button onclick="openForm()">Select Flight</button>
-
-      </td>
-
-    </tr>
-    <tr>
-      <td>
-        <table>
-          <tr>
-            <td>Origin</td>
-            <td>Destination</td>
-            <td>Flight Date</td>
-            <td>Flight NO</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="text" id="commcode" name="commcode">
-            </td>
-            <td>
-              <input type="text" id="pcs" name="pcs">
-            </td>
-            <td>
-              <input type="date" id="shipingdate" name="shipingdate">
-            </td>
-            <td>
-              <input type="text" id="volume" name="volume">
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-
-
-
-
-  <div class="openBtn">
-    <button class="openButton" onclick="openForm()">
-      <strong>Open Form</strong>
-    </button>
-  </div>
-  <div class="selectFlightPopup">
-    <div class="formPopup" id="popupForm">
-      <form action="/action_page.php" class="formContainer">
-        <h2>Select Flight Popup</h2>
-        <label for="origin">
-          <strong>Origin</strong>
-        </label>
-        <input type="text" id="origin" placeholder="Origin" name="origin" required>
-        <label for="destination">
-          <strong>Destination</strong>
-        </label>
-        <input type="text" id="destination" placeholder="Destination" name="destination" required>
-        <label for="flightDate">
-          <strong>Flight Date</strong>
-        </label>
-        <input type="date" id="flightDate" placeholder="Flight Date" name="flightDate" required>
-        <button type="submit" class="btn">Select Flights</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          .plusbutton {
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            color: white;
+          }
+      </style>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+      <SCRIPT language="javascript">
+        function addRow(tableid) {
+    
+          var table = document.getElementById(tableid);
+    
+          var rowCount = table.rows.length;
+          var row = table.insertRow(rowCount);
+    
+                     var cell1 = row.insertCell(0);
+                    var element1 = document.createElement("input");
+                    element1.type = "checkbox";
+                    element1.name="chkbox[]";
+                    cell1.appendChild(element1);
+        
+                    var cell2 = row.insertCell(1);
+                    var element2 = document.createElement("input");
+                    element2.type = "text";
+                    element2.name = "txtbox[]";
+                    element2.style.width = "86%";
+                    cell2.appendChild(element2);
+                    // cell2.innerHTML = rowCount + 1;
+        
+                    var cell3 = row.insertCell(2);
+                    var element3 = document.createElement("input");
+                    element3.type = "text";
+                    element3.name = "txtbox[]";
+                    element3.style.width = "93%";
+                    cell3.appendChild(element3);
+    
+                     var cell4 = row.insertCell(3);
+                    var element4 = document.createElement("input");
+                    element4.type = "text";
+                    element4.name = "txtbox[]";
+                    cell4.appendChild(element4);
+    
+                     var cell5 = row.insertCell(4);
+                    var element5 = document.createElement("input");
+                    element5.type = "text";
+                    element5.name = "txtbox[]";
+                    cell5.appendChild(element5);
+                    
+        }
+    
+        function deleteRow(tableid) {
+          try {
+            var table = document.getElementById(tableid);
+            var rowCount = table.rows.length;
+    
+            for (var i = 0; i < rowCount; i++) {
+              var row = table.rows[i];
+              var chkbox = row.cells[0].childNodes[0];
+              if (null != chkbox && true == chkbox.checked) {
+                if (rowCount <= 1) {
+                  alert("Cannot delete all the rows.");
+                  break;
+                }
+                table.deleteRow(i);
+                rowCount--;
+                i--;
+              }
+    
+    
+            }
+          } catch (e) {
+            alert(e);
+          }
+        }
+    
+    
+      </SCRIPT>
+    </Head>
+    
+    <Body>
+      <div class = "center" >
+      <form class = "inner">
+    
+        <label for="awbn">AWB Number:</label>
+        <input type="text" id="awbn" name="awbn"  maxlength="11" size="11">
+       
+    
+        <label for="ubr">UBR Number:</label>
+        <input type="text" id="ubrn" name="ubrn">
+        <input type="submit" class="btn btn-primary" value="New/List">
+    
       </form>
+      
+      
+      <form action="/action_page.php" class="inner">
+    
+       <p class = "left"><strong>SHIPMENT DETAILS</strong></p>
+    
+    
+    
+    <div style="width:30%;Text-align:left;float:left;">
+     <label for="origin">Origin:</label>
+     <select name="origin" id="origin">
+     <option value="MAX">MAX</option>
+     <option value="USA">USA</option>
+     <option value="MIA">MIA</option>
+     <option value="LAX">LAX</option>
+     </select>
+      </div>
+    
+        <div style="width:30%;Text-align:left;float:left;">
+     <label for="destination">Destination:</label>
+     <select name="destination" id="destination">
+     <option value="MAX">MAX</option>
+     <option value="USA">USA</option>
+     <option value="MIA">MIA</option>
+     <option value="LAX">LAX</option>
+     </select>
     </div>
-  </div>
-  <script>
-    function openForm() {
-      document.getElementById("popupForm").style.display = "block";
-    }
-    function closeForm() {
-      document.getElementById("popupForm").style.display = "none";
-    }
-  </script>
-  <br>
-  <br>
-
-  <input type="submit" value="Submit">
-</Body>
-
-</Html>
+    
+    <div style="width:40%;Text-align:left;float:left;">
+     <label for="ShipingDate">Shiping Date:</label>
+     <input type="date" id="shipingdate" name="shipingdate">
+    </div>
+    
+    
+        <br>
+        <br>
+    
+        <div style="width:30%;Text-align:left;float:left;">
+     <label for="Agentcode">Agent Code:</label>
+     <select name="origin" id="origin">
+     <option value="MAX">MAX</option>
+     <option value="USA">USA</option>
+     <option value="MIA">MIA</option>
+     <option value="LAX">LAX</option>
+     </select>
+      </div>
+    
+       <div style="width:30%;Text-align:left;float:left;">
+     <label for="agentName">Agent Name:</label>
+     <input type="text" id="agentName" name="agentName">
+    </div>
+    
+        <div style="width:40%;Text-align:left;float:left;">
+     <label for="SCC">SCC:</label>
+     <select name="scc" id="scc">
+     <option value="AOG">AOG</option>
+     <option value="AVI">AVI</option>
+     <option value="CC1">CC1</option>
+     <option value="CHI">CHI</option>
+     <option value="CON">CON</option>
+     <option value="EXT">EXT</option>
+     <option value="GEN">GEN</option>
+     <option value="HUM">HUM</option>
+     <option value="ICE">ICE</option>
+     <option value="MED">MED</option>
+     <option value="PER">PER</option>
+     <option value="PIL">PIL</option>
+     <option value="AOG">AOG</option>
+     <option value="RMD">RMD</option>
+     <option value="DGR">DGR</option>
+     <option value="VAL">VAL</option>
+     <option value="SEA">SEA</option>
+     </select>
+      </div>
+    
+        <br>
+        <br>
+    
+       <div style="width:30%;Text-align:left;float:left;">
+     <label for="customerCode">Customer Code:</label>
+     <select name="customerCode" id="customerCode">
+     <option value="MAX">MAX</option>
+     <option value="USA">USA</option>
+     <option value="MIA">MIA</option>
+     <option value="LAX">LAX</option>
+     </select>
+      </div>
+    
+    
+       <div style="width:30%;Text-align:left;float:left;">
+     <label for="customerName">Customer Name:</label>
+     <input type="text" id="customerName" name="customerName">
+    </div>
+    
+       <div style="width:40%;Text-align:left;float:left;">
+     <label for="ServiceClass">Service Class:</label>
+     <select name="sclass" id="sclass">
+     <option value="FOC">Free of Charge</option>
+     <option value="COMAT">COMAT</option>
+     </select>
+    </div>
+    </br>
+    
+      </form>
+    
+      
+      <div class = "inner">
+       <p class = "left"><strong>SHIPMENT/ULD</strong></p>
+    
+        <div class ="row">
+         
+          <div class="round">
+            <P><strong>BULK BOOKING</strong></P>
+            <input type="button" value="+" class = "plusbutton btn btn-primary" onclick="addRow('dataTable')" style="margin: 1%" />
+    
+            <input type="button" value=" - " class = "minusbutton btn btn-danger" onclick="deleteRow('dataTable')" style="margin: 1%" />
+    
+            <br>
+    
+             <table id="dataTable" border="1">
+              <tr>
+                <td></td>
+                <td>CommCode</td>
+                <td>Pieces</td>
+                <td>Weight</td>
+                <td>Volume</td>
+              </tr>
+              <tr>
+                <TD>
+                  <input type="checkbox" name="chk" />
+                </TD>
+                <td>
+                  <input type="text" id="commcode" name="commcode" size = "7%">
+                </td>
+                <td>
+                  <input type="text" id="pcs" name="pcs" size = "10%">
+                </td>
+                <td>
+                  <input type="text" id="weight" name="weight">
+                </td>
+                <td>
+                  <input type="text" id="volume" name="volume">
+                </td>
+              </tr>
+            </table>
+            <br>
+    
+          </div>
+          
+    
+         
+         <div class="round">
+    
+            <P><strong>ULD BOOKING</strong></P>
+            <INPUT type="button" value="+" class = "plusbutton btn btn-primary" onclick="addRow('dataTable2')" style="margin: 1%"/>
+    
+            <INPUT type="button" value=" - " class = "minusbutton btn btn-danger" onclick="deleteRow('dataTable2')" style="margin: 1%"/>
+          
+            <table id="dataTable2" border="1">
+              <tr>
+                <td></td>
+                <td>Type/Group</td>
+                <td>No.of ULDs</td>
+                <td>ULD Weight</td>
+                <td>CommCode</td>
+              </tr>
+              <tr>
+                  <TD>
+                      <INPUT type="checkbox" name="chk" />
+                    </TD>
+                <td>
+                  <input type="text" id="uldtype" name="uldtype" size= "7%">
+                </td>
+                <td>
+                  <input type="text" id="noofulds" name="noofulds" size = "10%">
+                </td>
+                <td>
+                  <input type="text" id="uldweight" name="uldweight">
+                </td>
+                <td>
+                  <input type="text" id="commcode" name="commcode">
+                </td>
+              </tr>
+            </table>
+          <br>
+          </div>
+        </div>
+    
+        </div>
+      <br>
+      <div class = "inner">
+      <p class = "left"><strong>FLIGHT DETAILS</strong></p>
+      <table>
+        <tr>
+          <td>
+    
+            <button onclick="openForm()" class="btn btn-info">Select Flight</button>
+    
+          </td>
+    
+        </tr>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <td>Origin</td>
+                <td>Destination</td>
+                <td>Flight Date</td>
+                <td>Flight Number</td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="text" id="origin" name="origin">
+                </td>
+                <td>
+                  <input type="text" id="destination" name="destination">
+                </td>
+                <td>
+                  <input type="date" id="flightDate" name="flightDate">
+                </td>
+                <td>
+                  <input type="text" id="flightNumber" name="flightNumber">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    
+      </div>
+    
+    
+      <!-- <div class="openBtn">
+        <button class="openButton" onclick="openForm()">
+          <strong>Open Form</strong>
+        </button>
+      </div> -->
+      <div class="selectFlightPopup">
+        <div class="formPopup" id="popupForm">
+          <form action="/action_page.php" class="formContainer">
+            <h2>Select Flight</h2>
+            <label for="origin">
+              <strong>Origin</strong>
+            </label>
+            <input type="text" id="origin" name="origin" required>
+            <label for="destination">
+              <strong>Destination</strong>
+            </label>
+            <input type="text" id="destination" name="destination" required>
+            <label for="flightDate">
+              <strong>Flight Date</strong>
+            </label>
+            <input type="date" id="flightDate" name="flightDate" required>
+            <br><br>
+            <button type="submit" class="btn">Select Flights</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
+        </div>
+      </div>
+      <script>
+        function openForm() {
+          document.getElementById("popupForm").style.display = "block";
+        }
+        function closeForm() {
+          document.getElementById("popupForm").style.display = "none";
+        }
+      </script>
+      <br>
+      <br>
+    
+      <input type="submit" class="btn btn-success" value="Submit">
+    </div>
+    </Body>
+    
+    </Html>

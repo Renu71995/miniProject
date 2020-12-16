@@ -2,6 +2,8 @@
 
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
       <title>
         AWB Acceptance
       </title>
@@ -17,7 +19,6 @@
                 outline: none;
                 font-size: 15px;
                 transition: 0.4s;
-                font-family: 'Times New Roman', Times, serif;
             }
     
             .active,
@@ -91,8 +92,7 @@
     }
     button{
         margin-top:30px;
-    }
-    
+    }  
       </style>
       <SCRIPT language="javascript">
        
@@ -106,12 +106,13 @@
     
             <label for="awbn">AWB Number:</label>
             <input type="text" id="awbn" name="awbn">
-            <input type="text" id="awbn" name="awbn">
-    
             <label for="ubr">UBR Number:</label>
             <input type="text" id="ubrn" name="ubrn">
-            <input type="submit" value="List">
-            <input type="button" value="Clear" onclick="clearAWBUBRNumber()">
+            <div style="width:10%;Text-align:left;float:right;">
+                    <input type="submit" value="List" class="btn btn-primary">
+                    <input type="button" value="Clear" class="btn btn-danger" onclick="clearAWBUBRNumber()">
+            </div>
+            
         </form>
         <form class="block1">
     <div>
@@ -135,25 +136,25 @@
         </div>
         <div style="width:20%;Text-align:center;float:left;">
             <label for="ubr"><strong>LAT:</strong></label><br><br>
-            <label for="awbn">Tue Dec 01 2020</label><br><br>
+            <label for="awbn">Tue Dec 01 2020</label>
             <label for="awbn">15:46:30</label>
         </div>
         <div style="width:20%;Text-align:center;float:left;">
             <label for="ubr"><strong>AWB Dropoff Time:</strong></label><br><br>
-            <label for="awbn">Tue Dec 01 2020</label><br><br>
+            <label for="awbn">Tue Dec 01 2020</label>
             <label for="awbn">15:46:30</label>
         </div>
     </div>	
     </form>
         <div class="acceptance-heading">
-            <h2>Acceptance</h2>
+            <h2>ACCEPTANCE</h2>
         </div>
         <div class="acceptance-body">
             <input type="checkbox" id="parts" name="parts" value="yes">
             <label for="partsReceived">All parts received</label>
             <br>
         </div>
-        <button class="accordion"><strong>Bulk Booking</strong></button>
+        <button class="accordion"><strong>BULK BOOKING</strong></button>
         <div class="panel">
             <form id="bulkBookingForm">
                 <label for="pieces">Pieces:</label>
@@ -169,8 +170,10 @@
                     <option value="C">C</option>
                     <option value="D">D</option>
                 </select>
-                <input type="button" value="Add" onclick="showBulkInput();">
-                <input type="button" value="Clear" onclick="clearAcceptanceBulkBooking()">
+                <div style="width:10%;Text-align:left;float:right;">
+                        <input type="button" value="Add" class="btn btn-success" onclick="showBulkInput();">
+                        <input type="button" value="Clear" class="btn btn-danger" onclick="clearAcceptanceBulkBooking()">
+                </div>                
             </form>
             <h4 id='acceptedShipment'></h4>
             <p>
@@ -188,7 +191,7 @@
             <h4 id='deleteBulkEntry'></h4>
         </div>
         <br></br>
-        <button class="accordion"><strong>ULD Booking</strong></button>
+        <button class="accordion"><strong>ULD BOOKING</strong></button>
         <div class="panel">
             <form id="uldBookingForm">
                 <label for="pieces">Pieces:</label>
@@ -206,8 +209,10 @@
                     <option value="C">C</option>
                     <option value="D">D</option>
                 </select>
-                <input type="button" value="Add" onclick="showULDInput();">
-                <input type="button" value="Clear" onclick="clearAcceptanceULDBooking()">
+                <div style="width:10%;Text-align:left;float:right;">
+                    <input type="button" value="Add" class="btn btn-success" onclick="showULDInput();">
+                <input type="button" value="Clear" class="btn btn-danger" onclick="clearAcceptanceULDBooking()">
+                </div>
             </form>
             <h4 id='acceptedULD'></h4>
             <p>
@@ -235,13 +240,13 @@
       
     <div style="border: 3px solid black;padding: 0px 30px;">
     <h2 style="Text-align:left;">SCREEN DETAILS</h2>
-      <form  class="center1">
+      <form  id="screenDetailsForm">
       <div style="width:30%;Text-align:left;float:left;">
-            <label for="airport"><strong>Airport:</strong></label>
+            <label for="airport">Airport:</label>
              <input type="text" id="airport" name="airport">
         </div>
         <div style="width:20%;Text-align:left;float:left;">
-            <label for="methods"><strong>Methods:</strong></label>
+            <label for="methods">Methods:</label>
             <select name="methods" id="methods">
               <option value="A">A</option>
               <option value="B">B</option>
@@ -250,20 +255,18 @@
             </select>
         </div>
         <div style="width:20%;Text-align:left;float:left;">
-            <label for="pcs"><strong>Pcs:</strong></label>
+            <label for="pcs">Pieces:</label>
              <input type="number" id="pieces" name="Pcs" min="0" max="99999">
         </div>
         <div style="width:20%;Text-align:left;float:left;">
-            <label for="result"><strong>Result:</strong></label>
+            <label for="result">Result:</label>
              <select name="result" id="result">
-              <option value="E">E</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
-              <option value="H">H</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
             </select>
         </div>
-        <input type="button" value="Add" onclick="showScreenDetails();">
-        <input type="button" value="Clear" onclick="clearScreenDetails()">
+        <input type="button" value="Add" class="btn btn-success" onclick="showScreenDetails();">
+        <input type="button" value="Clear" class="btn btn-danger" onclick="clearScreenDetails()">
       </form>
       <h4 id='ScreenDetails'></h4>
             <p>
@@ -281,22 +284,22 @@
             <h4 id='deleteScreenDetails'></h4>
         <form  class="center2">
         <div style="width:40%;Text-align:left;float:left;">
-            <label for="screenname"><strong>Screen Name:</strong></label>
+            <label for="screenname">Screen Name:</label>
              <input type="text" id="airport" name="airport">
         </div>
-        <div style="width:40%;Text-align:left;float:left;">
-            <label for="datetime"><strong>Date Time:</strong></label>
+        <div style="width:50%;Text-align:left;float:left;">
+            <label for="datetime">Date Time:</label>
              <input type="date" id="shipingdate" name="shipingdate">
              <input type="text" id="time" name="time">
         </div>
-        <div style="width:20%;Text-align:left;float:left;">
-        <input id="ok" type="submit" value="OK">
-        <input id="print" type="submit" value="Print">
-        <input id="close" type="submit" value="Close">
+        <div style="width:10%;Text-align:left;float:left;">
+        <input id="ok" type="submit" class="btn btn-primary" value="OK">
+        <input id="print" type="submit" class="btn btn-info" value="Print">
         </div>
+        <br></br>
       </form>
       </div>
-      <button id="submitbutton" type="submit">Save</button>
+      <button id="submitbutton" class="btn btn-success" type="submit">Save</button>
       </div>
       <script>
        
@@ -385,8 +388,7 @@
             }
     
             function clearScreenDetails() {
-                document.getElementById("center1").reset();
-                alert("Removing Screen Details");
+                document.getElementById("screenDetailsForm").reset();
                 document.getElementById('ScreenDetails').innerHTML = "";
                 document.getElementById('displayAirport').innerHTML = "";
                 document.getElementById('displayMethod').innerHTML = "";
@@ -396,6 +398,7 @@
             }
              //Sandra
       </script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
       <br>
       <br>
     
