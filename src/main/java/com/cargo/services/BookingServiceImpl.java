@@ -26,7 +26,7 @@ public class BookingServiceImpl implements BookingService{
 	}
 
 	@Override
-	public List<FlightDetails> getFlightDetails(String origin, String destination, Date shipmentDate) {
+	public List<FlightDetails> getFlightDetails(String origin, String destination, String shipmentDate) {
 		return  bookingDetailsDAO.getFlightDetails(origin,destination,shipmentDate);
 
 	}

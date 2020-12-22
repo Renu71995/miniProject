@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,19 +20,38 @@ public class ULDdetails implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer uldId;
-
-	private Integer uldNumber;
 	private Integer awbNumber;
-	@OneToMany(mappedBy = "uldDetails")
-	private List<BasicBookingDetails> basicBookingDetails;
-
-	public ULDdetails(Integer uldId, Integer uldNumber, Integer awbNumber,
-			List<BasicBookingDetails> basicBookingDetails) {
+	private String uldType;
+	private Integer noOfUlds;
+	private Float uldWeight;
+	private String commodityCode;
+	
+//	@ManyToOne
+//	@JoinColumn(name="basic_uldBooking")
+//	private BasicBookingDetails basic_uldBooking;
+	
+	public ULDdetails(Integer uldId, Integer awbNumber, String uldType, Integer noOfUlds, Float uldWeight,
+			String commodityCode
+		//	, BasicBookingDetails basicBookingDetails
+			) {
 		super();
 		this.uldId = uldId;
-		this.uldNumber = uldNumber;
 		this.awbNumber = awbNumber;
-		this.basicBookingDetails = basicBookingDetails;
+		this.uldType = uldType;
+		noOfUlds = noOfUlds;
+		this.uldWeight = uldWeight;
+		this.commodityCode = commodityCode;
+	//	this.basic_uldBooking = basicBookingDetails;
+	}
+
+	public ULDdetails() {
+	// TODO Auto-generated constructor stub
+	}
+	
+	public ULDdetails setUldValues(Integer awbNumber,ULDdetails ulDdetails){
+           ulDdetails.awbNumber=awbNumber;
+           return ulDdetails;
+		
 	}
 
 	public Integer getUldId() {
@@ -40,14 +62,6 @@ public class ULDdetails implements Serializable {
 		this.uldId = uldId;
 	}
 
-	public Integer getUldNumber() {
-		return uldNumber;
-	}
-
-	public void setUldNumber(Integer uldNumber) {
-		this.uldNumber = uldNumber;
-	}
-
 	public Integer getAwbNumber() {
 		return awbNumber;
 	}
@@ -56,16 +70,59 @@ public class ULDdetails implements Serializable {
 		this.awbNumber = awbNumber;
 	}
 
-	public List<BasicBookingDetails> getBasicBookingDetails() {
-		return basicBookingDetails;
+	public String getUldType() {
+		return uldType;
 	}
 
-	public void setBasicBookingDetails(List<BasicBookingDetails> basicBookingDetails) {
-		this.basicBookingDetails = basicBookingDetails;
+	public void setUldType(String uldType) {
+		this.uldType = uldType;
 	}
+
+	
+
+	public Integer getNoOfUlds() {
+		return noOfUlds;
+	}
+
+	public void setNoOfUlds(Integer noOfUlds) {
+		this.noOfUlds = noOfUlds;
+	}
+
+	public Float getUldWeight() {
+		return uldWeight;
+	}
+
+	public void setUldWeight(Float uldWeight) {
+		this.uldWeight = uldWeight;
+	}
+
+	public String getCommodityCode() {
+		return commodityCode;
+	}
+
+	public void setCommodityCode(String commodityCode) {
+		this.commodityCode = commodityCode;
+	}
+
+//	public BasicBookingDetails getBasicBookingDetails() {
+//		return basic_uldBooking;
+//	}
+//
+//	public void setBasicBookingDetails(BasicBookingDetails basicBookingDetails) {
+//		this.basic_uldBooking = basicBookingDetails;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return "ULDdetails [uldId=" + uldId + ", awbNumber=" + awbNumber + ", uldType=" + uldType + ", NoOfUlds="
+				+ noOfUlds + ", uldWeight=" + uldWeight + ", commodityCode=" + commodityCode + ", basicBookingDetails="
+				//+ basic_uldBooking 
+				+ "]";
+	}
+	
+	
 }

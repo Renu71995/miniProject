@@ -14,7 +14,12 @@ import java.util.List;
 public interface ULDdetailsRepository extends JpaRepository<ULDdetails, Integer> {
 
     @Query("select u  from ULDdetails u where u.awbNumber=:awbNumber")
-    List<ULDdetails> findByAWB(@Param("awbNumber") int awbNumber);
-
+    ULDdetails findByAWB(@Param("awbNumber") int awbNumber);
+    
+    public default  ULDdetails setUldValues(Integer awbNumber,ULDdetails ulDdetails){
+        ulDdetails.setAwbNumber(awbNumber);
+        return ulDdetails;
+		
+	}
 
 }

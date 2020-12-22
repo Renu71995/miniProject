@@ -1,7 +1,9 @@
 package com.cargo.DAO;
 
 
+import com.cargo.entities.BasicBookingDetails;
 import com.cargo.entities.BookingWrapper;
+import com.cargo.entities.BulkBooking;
 import com.cargo.entities.FlightDetails;
 import com.cargo.entities.ULDdetails;
 import com.cargo.repositories.BookingDetailsRepository;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class BookingDetailsDAOImp implements BookingDetailsDAO {
@@ -32,10 +35,17 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
          String msg="";
 
         try {
-            bookingDetailsRepository.save(bookingWrapper.getBasicBookingDetails());
-            bookingWrapper.getUlDdetails().forEach(s->ulDdetailsRepository.save(s));
-            bookingWrapper.getBulkBooking().forEach(s->bulBookingRepository.save(s));
-            msg="Booking Details Saved Successfully";
+        	
+          BasicBookingDetails basicBookingDetails=bookingWrapper.getBasicBookingDetails();
+          basicBookingDetails.setUbrNumber(basicBookingDetails.getOrigin(),basicBookingDetails.getDestination(),ThreadLocalRandom.current().nextInt());
+           basicBookingDetails=bookingDetailsRepository.save(bookingWrapper.getBasicBookingDetails());
+          
+//            bookingWrapper.getUlDdetails().forEach(s->ulDdetailsRepository.save(s));
+//            bookingWrapper.getBulkBooking().forEach(s->bulBookingRepository.save(s));
+          	ULDdetails ulDdetails=ulDdetailsRepository.setUldValues(basicBookingDetails.getAwbNumber(),bookingWrapper.getUlDdetails());
+            ulDdetailsRepository.save(ulDdetails);
+            BulkBooking bulkBooking=bulBookingRepository.setAWBValue(basicBookingDetails.getAwbNumber(), bookingWrapper.getBulkBooking());
+            bulBookingRepository.save(bulkBooking);
         } catch (Exception e) {
             e.printStackTrace();
             msg="Error Caught:"+e.getMessage();
@@ -59,7 +69,7 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
     }
 
     @Override
-    public List<FlightDetails> getFlightDetails(String origin, String destination, Date shipmentDate) {
+    public List<FlightDetails> getFlightDetails(String origin, String destination, String shipmentDate) {
         return flightDetailsRepository.findflight(origin,destination,shipmentDate);
     }
 }

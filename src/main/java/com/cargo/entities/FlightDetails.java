@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class FlightDetails implements Serializable {
@@ -22,18 +24,23 @@ public class FlightDetails implements Serializable {
 	private String flightNumber;
 	private String origin;
 	private String destination;
-	private Date shipmentDate;
+	private String shipmentDate;
 	private boolean isManifested;
-	private Timestamp std;
-	private Timestamp sta;
-	private Timestamp atd;
-	private Timestamp ata;
-	@OneToMany(mappedBy = "flightDetails")
-	List<BasicBookingDetails> basicBookingDetailsList;
+	@Temporal(value= TemporalType.TIMESTAMP)
+	private Date std;
+	@Temporal(value= TemporalType.TIMESTAMP)
+	private Date sta;
+	@Temporal(value= TemporalType.TIMESTAMP)
+	private Date atd;
+	@Temporal(value= TemporalType.TIMESTAMP)
+	private Date ata;
+//	@OneToMany(mappedBy = "flightDetails")
+//	List<BasicBookingDetails> basicBookingDetailsList;
 
-	public FlightDetails(Integer flightId, String flightNumber, String origin, String destination, Date shipmentDate,
-			boolean isManifested, Timestamp std, Timestamp sta, Timestamp atd, Timestamp ata,
-			List<BasicBookingDetails> basicBookingDetailsList) {
+	public FlightDetails(Integer flightId, String flightNumber, String origin, String destination, String shipmentDate,
+			boolean isManifested, Timestamp std, Timestamp sta, Timestamp atd, Timestamp ata
+			//,List<BasicBookingDetails> basicBookingDetailsList
+			) {
 		super();
 		this.flightId = flightId;
 		this.flightNumber = flightNumber;
@@ -45,7 +52,9 @@ public class FlightDetails implements Serializable {
 		this.sta = sta;
 		this.atd = atd;
 		this.ata = ata;
-		this.basicBookingDetailsList = basicBookingDetailsList;
+		//this.basicBookingDetailsList = basicBookingDetailsList;
+	}
+	public FlightDetails(){
 	}
 
 	public Integer getFlightId() {
@@ -80,11 +89,11 @@ public class FlightDetails implements Serializable {
 		this.destination = destination;
 	}
 
-	public Date getShipmentDate() {
+	public String getShipmentDate() {
 		return shipmentDate;
 	}
 
-	public void setShipmentDate(Date shipmentDate) {
+	public void setShipmentDate(String shipmentDate) {
 		this.shipmentDate = shipmentDate;
 	}
 
@@ -96,45 +105,45 @@ public class FlightDetails implements Serializable {
 		this.isManifested = isManifested;
 	}
 
-	public Timestamp getStd() {
+	public Date getStd() {
 		return std;
 	}
 
-	public void setStd(Timestamp std) {
+	public void setStd(Date std) {
 		this.std = std;
 	}
 
-	public Timestamp getSta() {
+	public Date getSta() {
 		return sta;
 	}
 
-	public void setSta(Timestamp sta) {
+	public void setSta(Date sta) {
 		this.sta = sta;
 	}
 
-	public Timestamp getAtd() {
+	public Date getAtd() {
 		return atd;
 	}
 
-	public void setAtd(Timestamp atd) {
+	public void setAtd(Date atd) {
 		this.atd = atd;
 	}
 
-	public Timestamp getAta() {
+	public Date getAta() {
 		return ata;
 	}
 
-	public void setAta(Timestamp ata) {
+	public void setAta(Date ata) {
 		this.ata = ata;
 	}
 
-	public List<BasicBookingDetails> getBasicBookingDetailsList() {
-		return basicBookingDetailsList;
-	}
-
-	public void setBasicBookingDetailsList(List<BasicBookingDetails> basicBookingDetailsList) {
-		this.basicBookingDetailsList = basicBookingDetailsList;
-	}
+//	public List<BasicBookingDetails> getBasicBookingDetailsList() {
+//		return basicBookingDetailsList;
+//	}
+//
+//	public void setBasicBookingDetailsList(List<BasicBookingDetails> basicBookingDetailsList) {
+//		this.basicBookingDetailsList = basicBookingDetailsList;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

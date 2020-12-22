@@ -1,16 +1,54 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
+<Html>
+
+<Head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Example of Paragraph tag</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+<title>Maintain Booking</title>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#shippingDate").datepicker();
+	});
+</script>
 <style>
 .center {
-	padding: 70px 0;
-	border: 3px solid green;
+	padding: 100px 30px 30px 30px;
+	border: 3px solid black;
 	text-align: center;
+}
+
+.left {
+	padding: 15px 0;
+	text-align: left;
+}
+
+.inner {
+	border: 2px solid black;
+	padding: 30px 0px 30px 30px;
+	float: center;
+	border-radius: 2px;
+}
+
+.round {
+	border: 2px solid black;
+	border-radius: 12px;
+	width: 48%;
+	Text-align: left;
+	float: left;
+	padding-left: 25px;
 }
 
 table, th, td {
@@ -98,17 +136,37 @@ th, td {
 
 .row {
 	display: flex;
+	justify-content: space-around;
 }
 
 .column {
-	flex: 50%;
+	flex: 40%;
 	padding: 5px;
 }
-</style>
-<SCRIPT language="javascript">
-	function addRow(tableID) {
 
-		var table = document.getElementById(tableID);
+.minusbutton {
+	border-radius: 50%;
+	border: none;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
+}
+
+.plusbutton {
+	border-radius: 50%;
+	border: none;
+	font-size: 20px;
+	color: white;
+}
+</style>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+	crossorigin="anonymous"></script>
+<SCRIPT language="javascript">
+	function addRow(tableid) {
+
+		var table = document.getElementById(tableid);
 
 		var rowCount = table.rows.length;
 		var row = table.insertRow(rowCount);
@@ -123,6 +181,7 @@ th, td {
 		var element2 = document.createElement("input");
 		element2.type = "text";
 		element2.name = "txtbox[]";
+		element2.style.width = "86%";
 		cell2.appendChild(element2);
 		// cell2.innerHTML = rowCount + 1;
 
@@ -130,6 +189,7 @@ th, td {
 		var element3 = document.createElement("input");
 		element3.type = "text";
 		element3.name = "txtbox[]";
+		element3.style.width = "93%";
 		cell3.appendChild(element3);
 
 		var cell4 = row.insertCell(3);
@@ -143,11 +203,12 @@ th, td {
 		element5.type = "text";
 		element5.name = "txtbox[]";
 		cell5.appendChild(element5);
+
 	}
 
-	function deleteRow(tableID) {
+	function deleteRow(tableid) {
 		try {
-			var table = document.getElementById(tableID);
+			var table = document.getElementById(tableid);
 			var rowCount = table.rows.length;
 
 			for (var i = 0; i < rowCount; i++) {
@@ -169,51 +230,79 @@ th, td {
 		}
 	}
 </SCRIPT>
+</Head>
 
-</head>
-<body>
-	 <form:form action="/booking" method="get"
-		modelAttribute="bookingWrapper" class="center">
-		<label for="awbn">AWB Number:</label>
-		<form:input type="text" id="awbn" name="awbn" maxlength="11" size="11"
+<Body>
+	<div class="center">
+		 <form:form action="/booking" method="get"
+		modelAttribute="bookingWrapper" class="inner">
+
+			<label for="awbn">AWB Number:</label>
+			<form:input type="text" id="awbn" name="awbn" maxlength="11" size="11"
 			path="basicBookingDetails.awbNumber" />
-		<label for="ubr">UBR Number:</label>
-		<form:input type="text" id="ubrn" name="ubrn" path="basicBookingDetails.ubrNumber" />
-		<input type="submit" value="NewList">
-	</form:form> 
+			 <label for="ubr">UBR
+				Number:</label>
+				<form:input type="text" id="ubrn" name="ubrn" path="basicBookingDetails.ubrNumber" />
+				 <input
+				type="submit" class="btn btn-primary" value="New/List">
 
-	  <p>SHIPMENT DETAILS</p>
-	<form:form action="/booking" modelAttribute="bookingWrapper" method="POST" class="center">
-		<label for="origin">origin:</label> 
-		<form:select path="basicBookingDetails.origin" name="origin" id="origin">
+		</form:form> 
+
+
+		<form:form action="/booking" modelAttribute="bookingWrapper" method="POST"  class="inner">
+
+			<p class="left">
+				<strong>SHIPMENT DETAILS</strong>
+			</p>
+
+
+
+			<div style="width: 30%; Text-align: left; float: left;">
+				<label for="origin">Origin:</label> 
+			<form:select path="basicBookingDetails.origin" name="origin" id="origin">
 			<form:option value="MAX">MAX</form:option>
 			<form:option value="USA">USA</form:option>
 			<form:option value="MIA">MIA</form:option>
 			<form:option value="LAX">LAX</form:option>
+			<form:option value="LAX">CVG</form:option>
 		</form:select>
-		 <label for="destination">destination:</label>
-		  <form:select
+			</div>
+
+			<div style="width: 30%; Text-align: left; float: left;">
+				<label for="destination">Destination:</label>   <form:select
 			name="destination" id="destination" path="basicBookingDetails.destination">
 			<form:option value="MAX">MAX</form:option>
 			<form:option value="USA">USA</form:option>
 			<form:option value="MIA">MIA</form:option>
-			<form:option value="LAX">LAX</form:option>
+			<form:option value="LAX">LAX</form:option>'
+			<form:option value="LAX">DFW</form:option>
 		</form:select> 
-		<label for="ShipingDate">Shiping Date:</label>
-		 <form:input type="date"
-			id="shippingDate" name="shippingDate" path="basicBookingDetails.shippingDate"/> <br> <br> 
-			<label for="Agentcode">Agent Code:</label>
-			 <form:select name="origin" id="origin" path="basicBookingDetails.agentCode">
+			</div>
+
+			<div style="width: 40%; Text-align: left; float: left;">
+				<label for="ShipingDate">Shiping Date:</label>  <form:input type="text"
+			id="shippingDate" name="shippingDate" path="basicBookingDetails.shippingDate"/>
+			</div>
+
+
+			<br> <br>
+
+			<div style="width: 30%; Text-align: left; float: left;">
+				<label for="Agentcode">Agent Code:</label>  <form:select name="agentCode" id="agentCode" path="basicBookingDetails.agentCode">
 			<form:option value="MAX">MAX</form:option>
 			<form:option value="USA">USA</form:option>
 			<form:option value="MIA">MIA</form:option>
-			<form:option value="LAX">LAX</form:option>
+			<form:option value="LAX">AGTDFW</form:option>
 		</form:select> 
-		<label for="agentName">Agent Name:</label>
-		<form:input type="text"
+			</div>
+
+			<div style="width: 30%; Text-align: left; float: left;">
+				<label for="agentName">Agent Name:</label>	<form:input type="text"
 			id="agentName" name="agentName" path="basicBookingDetails.agentName"/>
-		 <label for="SCC">SCC:</label>
-		<form:select name="scc" id="scc" path="basicBookingDetails.scc">
+			</div>
+
+			<div style="width: 40%; Text-align: left; float: left;">
+				<label for="SCC">SCC:</label> <form:select name="scc" id="scc" path="basicBookingDetails.scc">
 			<form:option value="AOG">AOG</form:option>
 			<form:option value="AVI">AVI</form:option>
 			<form:option value="CC1">CC1</form:option>
@@ -231,159 +320,190 @@ th, td {
 			<form:option value="DGR">DGR</form:option>
 			<form:option value="VAL">VAL</form:option>
 			<form:option value="SEA">SEA</form:option>
-		</form:select> <br> <br> <label for="customerCode">Customer Code:</label>
-		<form:select name="customerCode" id="customerCode" path="basicBookingDetails.customerCode">
+		</form:select>
+			</div>
+
+			<br> <br>
+
+			<div style="width: 30%; Text-align: left; float: left;">
+				<label for="customerCode">Customer Code:</label> 	<form:select name="customerCode" id="customerCode" path="basicBookingDetails.customerCode">
 			<form:option value="MAX">MAX</form:option>
 			<form:option value="USA">USA</form:option>
 			<form:option value="MIA">MIA</form:option>
 			<form:option value="LAX">LAX</form:option>
 		</form:select>
-		 <label for="customerName">Customer Name:</label>
-		  <form:input type="text"
-			id="customerName" name="customerName" path="basicBookingDetails.customerName"/> <label
-			for="ServiceClass">Service Class:</label> 
-			<form:select name="sclass"
+			</div>
+
+
+			<div style="width: 30%; Text-align: left; float: left;">
+				<label for="customerName">Customer Name:</label>   <form:input type="text"
+			id="customerName" name="customerName" path="basicBookingDetails.customerName"/>
+			</div>
+
+			<div style="width: 40%; Text-align: left; float: left;">
+				<label for="ServiceClass">Service Class:</label> 	<form:select name="sclass"
 			id="sclass" path="basicBookingDetails.serviceClass">
 			<form:option value="FOC">Free of Charge</form:option>
 			<form:option value="COMAT">COMAT</form:option>
 		</form:select>
- 
+			</div>
+			</br>
+
 	
-	<p>SHIPMENT/ULD</p>
 
-<div class="row">
-        <div class="column">
-            <P>Bulk Booking</P>
-            <input type="button" value="Add Row" onclick="addRow('dataTable')"
-                style="margin: 1%" /> <input type="button" value="Delete Row"
-                onclick="deleteRow('dataTable')" style="margin: 1%" /> <br>
 
- 
+		<div class="inner">
+			<p class="left">
+				<strong>SHIPMENT/ULD</strong>
+			</p>
 
-            <table id="dataTable" width="350px" border="1">
-                <tr>
-                    <td></td>
-                    <td>CommCode</td>
-                    <td>pcs</td>
-                    <td>Weight</td>
-                    <td>Volume</td>
-                </tr>
-                <tr>
-                    <TD><input type="checkbox" name="chk" /></TD>
-                    <td><form:input type="text" id="commodityCode" name="commodityCode" path="bulkBooking.commodityCode"/>
+			<div class="row">
+
+				<div class="round">
+					<P>
+						<strong>BULK BOOKING</strong>
+					</P>
+					<!-- <input type="button" value="+" class="plusbutton btn btn-primary"
+						onclick="addRow('dataTable')" style="margin: 1%" /> <input
+						type="button" value=" - " class="minusbutton btn btn-danger"
+						onclick="deleteRow('dataTable')" style="margin: 1%" /> <br> -->
+
+					<table id="dataTable" border="1">
+						<tr>
+							
+							<td>CommCode</td>
+							<td>Pieces</td>
+							<td>Weight</td>
+							<td>Volume</td>
+						</tr>
+						<tr>
+							<td><form:input type="text" id="commodityCode" name="commodityCode"   path="bulkBooking.commodityCode"/>
                     </td> 
-                    <td><form:input type="text" id="pieceNumber" name="pieceNumber" path="bulkBooking.pieceNumber"/></td>
-                    <td><form:input type="text" id="weight" name="weight" path="bulkBooking.weight"/></td>
-                    <td><form:input type="text" id="volume" name="volume" path="bulkBooking.volume"/></td>
-                </tr>
-            </table>
-
- 
-
-        </div>
-
-
-
-		<div class="column">
-
-            <P>ULD Booking</P>
-            <input type="button" value="Add Row" onclick="addRow('dataTable2')"
-                style="margin: 1%" /> <input type="button" value="Delete Row"
-                onclick="deleteRow('dataTable2')" style="margin: 1%" />
-            <table id="dataTable2" width="350px" border="1">
-                <tr>
-                    <td></td>
-                    <td>ULD Type/Group</td>
-                    <td>No.of ULDs</td>
-                    <td>ULD Weight</td>
-                    <td>CommCode</td>
-                </tr>
-                <tr>
-                    <TD><input type="checkbox" name="chk" /></TD>
-                    <td><form:input type="text" id="uldtype" name="uldtype" path="ulDdetails.UldType"/></td>
-                    <td><form:input type="text" id="noofulds" name="noofulds" path="ulDdetails.NoOfUlds"/>
+                     <td><form:input type="text" id="pieceNumber" name="pieceNumber" path="bulkBooking.pieceNumber"/>
+                   
                     </td>
-                    <td><form:input type="text" id="uldweight" name="uldweight" path="ulDdetails.UldWeight"/>
+                    <td><form:input type="text" id="weight" name="weight"  path="bulkBooking.weight"/>
+                 
                     </td>
-                    <td><form:input type="text" id="commcode" name="commcode" path="ulDdetails.CommodityCode"/> 
+                    <td><form:input type="text" id="volume" name="volume" path="bulkBooking.volume"/>
+                 
                     </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+						</tr>
+					</table>
+					<br>
+
+				</div>
 
 
-	<p>FLIGHT DETAILS</p>
-	<table class="center">
-		<tr>
-			<td>
 
-				<button onclick="openForm()">Select Flight</button>
+				<div class="round">
 
-			</td>
+					<P>
+						<strong>ULD BOOKING</strong>
+					</P>
+				<!-- 	<INPUT type="button" value="+" class="plusbutton btn btn-primary"
+						onclick="addRow('dataTable2')" style="margin: 1%" /> <INPUT
+						type="button" value=" - " class="minusbutton btn btn-danger"
+						onclick="deleteRow('dataTable2')" style="margin: 1%" /> -->
 
-		</tr>
-		<tr>
-			<td>
-				<table>
-					<tr>
-						<td>Origin</td>
-						<td>Destination</td>
-						<td>Flight Date</td>
-						<td>Flight NO</td>
-					</tr>
-					<tr>
-						 <td><form:input type="text" id="commcode" name="commcode" path="commcode"/>
+					<table id="dataTable2" border="1">
+						<tr>
+							
+							<td>Type/Group</td>
+							<td>No.of ULDs</td>
+							<td>ULD Weight</td>
+							<td>CommCode</td>
+						</tr>
+						<tr>
+							  <td><form:input type="text" id="uldtype" name="uldtype" path="ulDdetails.uldType"/> </td>
+                    <td><form:input type="text" id="noofulds" name="noofulds" path="ulDdetails.noOfUlds"/>
+                     </td>
+                    <td><form:input type="text" id="uldweight" name="uldweight" path="ulDdetails.uldWeight"/>
+                     </td>
+                    <td><form:input type="text" id="commcode" name="commcode" path="ulDdetails.commodityCode"/> 
+                      </td>
+						</tr>
+					</table>
+					<br>
+				</div>
+			</div>
+
+		</div>
+		<br>
+		<div class="inner">
+			<p class="left">
+				<strong>FLIGHT DETAILS</strong>
+			</p>
+			<table>
+				<tr>
+					<td>
+
+						<button onclick="openForm()" class="btn btn-info">Select
+							Flight</button>
+
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>Origin</td>
+								<td>Destination</td>
+								<td>Flight Date</td>
+								<td>Flight Number</td>
+							</tr>
+							<tr>
+								 <td><input type="text" id="Origin" name="origin" path="basicBookingDetails.origin"/>
 						</td>
-						<td><form:input type="text" id="pcs" name="pcs" path="pcs"/></td>
-						<td><form:input type="date" id="shipingdate" name="shipingdate" path="shipingdate"/>
+						<td><input type="text" id="destination" name="destination" path="basicBookingDetails.destination"/></td>
+						<td> <input type="text" id="shippingDate" name="shippingDate" path="basicBookingDetails.shippingDate"/>
 						</td>
-						<td><form:input type="text" id="volume" name="volume" path="volume"/></td> 
+						<td><input type="text" id="flightNumber" name="flightNumber" path="basicBookingDetails.flightNumber"/></td> 
 					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+						</table>
+					</td>
+				</tr>
+			</table>
 
-
+		</div>
+			 <input type="submit" class="btn btn-success"
+			value="Submit">
 </form:form>
 
-	<div class="openBtn">
-		<button class="openButton" onclick="openForm()">
-			<strong>Open Form</strong>
-		</button>
+		<!-- <div class="openBtn">
+        <button class="openButton" onclick="openForm()">
+          <strong>Open Form</strong>
+        </button>
+      </div> -->
+
 	</div>
-	<div class="selectFlightPopup">
-		<div class="formPopup" id="popupForm">
-			<form:form action="/booking/getFlights" class="formContainer" modelAttribute="flightDetails">
-				<h2>Select Flight Popup</h2>
-				<label for="origin"> <strong>Origin</strong></label>
-				 <form:input type="text" id="origin" placeholder="Origin" name="origin" path="origin" required="required"/>
-				<label for="destination"> <strong>Destination</strong></label> 
-				<form:input type="text" id="destination" placeholder="Destination"
-					name="destination" path="destination" required="required"/>
-					 <label for="flightDate">
-					<strong>Flight Date</strong>
-				</label>
-				 <form:input type="date" id="shipmentDate" placeholder="Flight Date"
-					name="shipmentDate" path="shipmentDate" required="required"/>
-				<form:button type="submit" class="btn">Select Flights</form:button>
-				<form:button type="button" class="btn cancel" onclick="closeForm()">Close</form:button>
-			</form:form>
+		<div class="selectFlightPopup">
+			<div class="formPopup" id="popupForm">
+				<form action="/action_page.php" class="formContainer">
+					<h2>Select Flight</h2>
+					<label for="origin"> <strong>Origin</strong>
+					</label> <input type="text" id="origin" name="origin" required> <label
+						for="destination"> <strong>Destination</strong>
+					</label> <input type="text" id="destination" name="destination" required>
+					<label for="flightDate"> <strong>Flight Date</strong>
+					</label> <input type="date" id="flightDate" name="flightDate" required>
+					<br>
+					<br>
+					<button type="submit" class="btn">Select Flights</button>
+					<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+				</form>
+			</div>
 		</div>
-	</div>
-	<script>
-		function openForm() {
-			document.getElementById("popupForm").style.display = "block";
-		}
-		function closeForm() {
-			document.getElementById("popupForm").style.display = "none";
-		}
-	</script>
-	<br>
-	<br>
+		<script>
+			function openForm() {
+				document.getElementById("popupForm").style.display = "block";
+			}
+			function closeForm() {
+				document.getElementById("popupForm").style.display = "none";
+			}
+		</script>
+		<br> <br>
+</Body>
 
-	<input type="submit" value="Submit"/>
-
-</body>
-</html>
+</Html>

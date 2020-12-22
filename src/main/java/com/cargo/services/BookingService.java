@@ -13,6 +13,6 @@ public interface BookingService {
 
 	public BookingWrapper getBookingData(int awbNumber);
 
-	public List<FlightDetails> getFlightDetails(String origin, String destination, Date shipmentDate);
+	public List<FlightDetails> getFlightDetails(String origin, String destination, String shipmentDate);
 	
 }

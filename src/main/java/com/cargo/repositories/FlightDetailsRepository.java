@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface FlightDetailsRepository extends JpaRepository<FlightDetails,Integer> {
     @Query("select u  from FlightDetails u where u.origin=:origin and u.destination=:destination and shipmentDate=:shipmentDate")
-    List<FlightDetails> findflight(@Param("origin") String origin, @Param("destination")String destination, @Param("shipmentDate") Date shipmentDate);
+    List<FlightDetails> findflight(@Param("origin") String origin, @Param("destination")String destination, @Param("shipmentDate") String shipmentDate);
 }
