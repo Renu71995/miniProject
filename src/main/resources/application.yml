@@ -1,17 +1,18 @@
 spring:
   datasource:
-    password: Qwerty@1995#
+    password: thomas@ethan2020
     username: root
     url: jdbc:mysql://localhost:3306/cargo_portal
     driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
   mvc:
-    view:
+    view: 
       prefix: /WEB-INF/jsp/
-      suffix: .jsp
+      suffix: .jsp   
   thymeleaf:
     enabled: false
 server:
   port : 8080
+  

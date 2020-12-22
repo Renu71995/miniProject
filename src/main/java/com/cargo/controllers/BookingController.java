@@ -26,7 +26,7 @@ public class BookingController {
 		model.addAttribute("bookingWrapper", new BookingWrapper());
 		model.addAttribute("flightDetails",new FlightDetails());
 		System.out.println("djbd");
-		return "bookingpage";
+		return "BookingPage";
 	}
 
 	@RequestMapping(value = "/booking", method = { RequestMethod.GET })
@@ -38,14 +38,14 @@ public class BookingController {
 		 System.out.println(bookingWrapper.getBulkBooking());
 		 System.out.println(bookingWrapper.getUlDdetails());
 		model.addAttribute("bookingWrapper",bookingWrapper);
-		return "bookingpage";
+		return "BookingPage";
 	}
 
 	@RequestMapping(value = "/booking", method = { RequestMethod.POST })
 	public String saveBookingDetails(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
 		bookingService.saveBookingDeatils(bookingWrapper);
 		model.addAttribute("bookingWrapper", bookingWrapper);
-		return "bookingpage";
+		return "BookingPage";
 	}
 
 	
@@ -54,7 +54,7 @@ public class BookingController {
 		bookingService.getFlightDetails(flightDetails.getOrigin(), flightDetails.getDestination(),
 				flightDetails.getShipmentDate());
 		model.addAttribute("flightDetails", flightDetails);
-		return "bookingpage";
+		return "BookingPage";
 
 	}
 }
