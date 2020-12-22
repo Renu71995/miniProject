@@ -1,24 +1,13 @@
 package com.cargo.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class BasicBookingDetails implements Serializable {
@@ -35,31 +24,58 @@ public class BasicBookingDetails implements Serializable {
 	private int awbNumber;
 	private String ubrNumber;
 	private String awbStatus;
+	@Column(nullable = false)
 	private String origin;
+	@Column(nullable = false)
 	private String destination;
+	@Column(nullable = false)
 	private String flightNumber;
+	@Column(nullable = false)
 	private String agentCode;
+	@Column(nullable = false)
 	private String agentName;
+	@Column(nullable = false)
 	private String customerCode;
+	@Column(nullable = false)
 	private String customerName;
+	@Column(nullable = false)
 	private String shippingDate;
+	@Column(nullable = false)
 	private String scc;
+	@Column(nullable = false)
 	private String serviceClass;
-	
-//	@OneToMany(mappedBy="basic_bulkBooking",cascade=CascadeType.ALL)
-//	private Set<BulkBooking> bulkBooking;
-//	
-//	@OneToMany(mappedBy="basic_uldBooking",cascade=CascadeType.ALL)
-//	private Set<ULDdetails> uldDetails;
+	@Column(nullable = false)
+	private String flightDetailsOrigin;
+	@Column(nullable = false)
+	private String flightDetailsDestination;
+	@Column(nullable = false)
+	private String flightDate;
 
+
+	public String getFlightDetailsOrigin() {
+		return flightDetailsOrigin;
+	}
+	public void setFlightDetailsOrigin(String flightDetailsOrigin) {
+		this.flightDetailsOrigin = flightDetailsOrigin;
+	}
+	public String getFlightDetailsDestination() {
+		return flightDetailsDestination;
+	}
+	public void setFlightDetailsDestination(String flightDetailsDestination) {
+		this.flightDetailsDestination = flightDetailsDestination;
+	}
+	public String getFlightDate() {
+		return flightDate;
+	}
+	public void setFlightDate(String flightDate) {
+		this.flightDate = flightDate;
+	}
 	public BasicBookingDetails() {
 	// TODO Auto-generated constructor stub
   	}
 	public BasicBookingDetails(int awbNumber, String ubrNumber, String awbStatus, String origin, String destination,
 			String flightNumber, String agentCode, String agentName, String customerCode, String customerName,
 			String shippingDate, String scc, String serviceClass
-//			, Set<BulkBooking> bulkBooking,
-//			Set<ULDdetails> uldDetails
 			) {
 		super();
 		this.awbNumber = awbNumber;
@@ -75,8 +91,7 @@ public class BasicBookingDetails implements Serializable {
 		this.shippingDate = shippingDate;
 		this.scc = scc;
 		this.serviceClass = serviceClass;
-//		this.bulkBooking = bulkBooking;
-//		this.uldDetails = uldDetails;
+
 	}
 
 
@@ -215,24 +230,7 @@ public class BasicBookingDetails implements Serializable {
 	}
 
 
-//	public Set<BulkBooking> getBulkBooking() {
-//		return bulkBooking;
-//	}
-//
-//
-//	public void setBulkBooking(Set<BulkBooking> bulkBooking) {
-//		this.bulkBooking = bulkBooking;
-//	}
-//
-//
-//	public Set<ULDdetails> getUldDetails() {
-//		return uldDetails;
-//	}
-//
-//
-//	public void setUldDetails(Set<ULDdetails> uldDetails) {
-//		this.uldDetails = uldDetails;
-//	}
+
 
 
 	public static long getSerialversionuid() {
@@ -245,13 +243,7 @@ public class BasicBookingDetails implements Serializable {
 				+ ", agentCode=" + agentCode + ", agentName=" + agentName + ", customerCode=" + customerCode
 				+ ", customerName=" + customerName + ", shippingDate=" + shippingDate + ", scc=" + scc
 				+ ", serviceClass=" + serviceClass + ", bulkBooking="
-//				+ bulkBooking + ", uldDetails=" + uldDetails
 				+ "]";
 	}
-	
-	
-	
-
-
 	
 }
