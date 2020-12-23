@@ -1,13 +1,26 @@
 package com.cargo.entities;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class BasicBookingDetails implements Serializable {
@@ -18,10 +31,11 @@ public class BasicBookingDetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 //	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="awb_number")
 //	@GenericGenerator(name="awb_number",strategy="com.cargo.entities.IdGenerator")
 	private int awbNumber;
+	@Column(nullable = false)
 	private String ubrNumber;
 	private String awbStatus;
 	@Column(nullable = false)
@@ -51,7 +65,6 @@ public class BasicBookingDetails implements Serializable {
 	@Column(nullable = false)
 	private String flightDate;
 
-
 	public String getFlightDetailsOrigin() {
 		return flightDetailsOrigin;
 	}
@@ -76,6 +89,8 @@ public class BasicBookingDetails implements Serializable {
 	public BasicBookingDetails(int awbNumber, String ubrNumber, String awbStatus, String origin, String destination,
 			String flightNumber, String agentCode, String agentName, String customerCode, String customerName,
 			String shippingDate, String scc, String serviceClass
+//			, Set<BulkBooking> bulkBooking,
+//			Set<ULDdetails> uldDetails
 			) {
 		super();
 		this.awbNumber = awbNumber;
@@ -91,7 +106,8 @@ public class BasicBookingDetails implements Serializable {
 		this.shippingDate = shippingDate;
 		this.scc = scc;
 		this.serviceClass = serviceClass;
-
+//		this.bulkBooking = bulkBooking;
+//		this.uldDetails = uldDetails;
 	}
 
 
@@ -102,6 +118,11 @@ public class BasicBookingDetails implements Serializable {
 
 	public void setAwbNumber(int awbNumber) {
 		this.awbNumber = awbNumber;
+	}
+	
+	public void setAwbNumber(){
+		 Random r = new Random( System.currentTimeMillis());
+		 this.awbNumber=75700000 + r.nextInt(20000);
 	}
 
 
@@ -230,7 +251,24 @@ public class BasicBookingDetails implements Serializable {
 	}
 
 
-
+//	public Set<BulkBooking> getBulkBooking() {
+//		return bulkBooking;
+//	}
+//
+//
+//	public void setBulkBooking(Set<BulkBooking> bulkBooking) {
+//		this.bulkBooking = bulkBooking;
+//	}
+//
+//
+//	public Set<ULDdetails> getUldDetails() {
+//		return uldDetails;
+//	}
+//
+//
+//	public void setUldDetails(Set<ULDdetails> uldDetails) {
+//		this.uldDetails = uldDetails;
+//	}
 
 
 	public static long getSerialversionuid() {
@@ -243,7 +281,13 @@ public class BasicBookingDetails implements Serializable {
 				+ ", agentCode=" + agentCode + ", agentName=" + agentName + ", customerCode=" + customerCode
 				+ ", customerName=" + customerName + ", shippingDate=" + shippingDate + ", scc=" + scc
 				+ ", serviceClass=" + serviceClass + ", bulkBooking="
+//				+ bulkBooking + ", uldDetails=" + uldDetails
 				+ "]";
 	}
+	
+	
+	
+
+
 	
 }

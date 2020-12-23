@@ -23,6 +23,11 @@
 		$("#shippingDate").datepicker();
 	});
 </script>
+<script>
+	$(function() {
+		$("#flightDate").datepicker();
+	});
+</script>
 <style>
 .center {
 	padding: 100px 30px 30px 30px;
@@ -233,6 +238,7 @@ th, td {
 </Head>
 
 <Body>
+
 	<div class="center">
 		 <form:form action="/booking" method="get"
 		modelAttribute="bookingWrapper" class="inner">
@@ -248,8 +254,8 @@ th, td {
 
 		</form:form> 
 
-
-		<form:form action="/booking" modelAttribute="bookingWrapper" method="POST"  class="inner">
+		<font color="red">${errorMessage}</font>
+		<form:form action="/booking" modelAttribute="bookingWrapper" method="POST"  class="inner" name="form1">
 
 			<p class="left">
 				<strong>SHIPMENT DETAILS</strong>
@@ -260,22 +266,22 @@ th, td {
 			<div style="width: 30%; Text-align: left; float: left;">
 				<label for="origin">Origin:</label> 
 			<form:select path="basicBookingDetails.origin" name="origin" id="origin">
-			<form:option value="MAX">MAX</form:option>
-			<form:option value="USA">USA</form:option>
+			<form:option value="MEX">MEX</form:option>
+			<form:option value="JFK">JFK</form:option>
 			<form:option value="MIA">MIA</form:option>
 			<form:option value="LAX">LAX</form:option>
-			<form:option value="LAX">CVG</form:option>
+			<form:option value="CVG">CVG</form:option>
 		</form:select>
 			</div>
 
 			<div style="width: 30%; Text-align: left; float: left;">
 				<label for="destination">Destination:</label>   <form:select
 			name="destination" id="destination" path="basicBookingDetails.destination">
-			<form:option value="MAX">MAX</form:option>
-			<form:option value="USA">USA</form:option>
+			<form:option value="MEX">MEX</form:option>
+			<form:option value="JFK">JFK</form:option>
 			<form:option value="MIA">MIA</form:option>
 			<form:option value="LAX">LAX</form:option>'
-			<form:option value="LAX">DFW</form:option>
+			<form:option value="DFW">DFW</form:option>
 		</form:select> 
 			</div>
 
@@ -289,10 +295,10 @@ th, td {
 
 			<div style="width: 30%; Text-align: left; float: left;">
 				<label for="Agentcode">Agent Code:</label>  <form:select name="agentCode" id="agentCode" path="basicBookingDetails.agentCode">
-			<form:option value="MAX">MAX</form:option>
-			<form:option value="USA">USA</form:option>
-			<form:option value="MIA">MIA</form:option>
-			<form:option value="LAX">AGTDFW</form:option>
+			<form:option value="AGTCVG">AGTCVG</form:option>
+			<form:option value="AGTLAX">AGTLAX</form:option>
+			<form:option value="AGTMIA">AGTMIA</form:option>
+			<form:option value="AGTDFW">AGTDFW</form:option>
 		</form:select> 
 			</div>
 
@@ -327,8 +333,8 @@ th, td {
 
 			<div style="width: 30%; Text-align: left; float: left;">
 				<label for="customerCode">Customer Code:</label> 	<form:select name="customerCode" id="customerCode" path="basicBookingDetails.customerCode">
-			<form:option value="MAX">MAX</form:option>
-			<form:option value="USA">USA</form:option>
+			<form:option value="MEX">MEX</form:option>
+			<form:option value="JFK">JFK</form:option>
 			<form:option value="MIA">MIA</form:option>
 			<form:option value="LAX">LAX</form:option>
 		</form:select>
@@ -377,15 +383,15 @@ th, td {
 							<td>Volume</td>
 						</tr>
 						<tr>
-							<td><form:input type="text" id="commodityCode" name="commodityCode"   path="bulkBooking.commodityCode"/>
+							<td><form:input type="text" style="width:100%" id="commodityCode" name="commodityCode"   path="bulkBooking.commodityCode"/>
                     </td> 
-                     <td><form:input type="text" id="pieceNumber" name="pieceNumber" path="bulkBooking.pieceNumber"/>
+                     <td><form:input type="text" id="pieceNumber" style="width:100%" name="pieceNumber" path="bulkBooking.pieceNumber"/>
                    
                     </td>
-                    <td><form:input type="text" id="weight" name="weight"  path="bulkBooking.weight"/>
+                    <td><form:input type="text" id="weight" style="width:100%" name="weight"  path="bulkBooking.weight"/>
                  
                     </td>
-                    <td><form:input type="text" id="volume" name="volume" path="bulkBooking.volume"/>
+                    <td><form:input type="text" id="volume" style="width:100%" name="volume" path="bulkBooking.volume"/>
                  
                     </td>
 						</tr>
@@ -415,12 +421,12 @@ th, td {
 							<td>CommCode</td>
 						</tr>
 						<tr>
-							  <td><form:input type="text" id="uldtype" name="uldtype" path="ulDdetails.uldType"/> </td>
-                    <td><form:input type="text" id="noofulds" name="noofulds" path="ulDdetails.noOfUlds"/>
+							  <td><form:input type="text" id="uldtype" style="width:100%" name="uldtype" path="ulDdetails.uldType"/> </td>
+                    <td><form:input type="text" id="noofulds" style="width:100%" name="noofulds" path="ulDdetails.noOfUlds"/>
                      </td>
-                    <td><form:input type="text" id="uldweight" name="uldweight" path="ulDdetails.uldWeight"/>
+                    <td><form:input type="text" id="uldweight" style="width:100%" name="uldweight" path="ulDdetails.uldWeight"/>
                      </td>
-                    <td><form:input type="text" id="commcode" name="commcode" path="ulDdetails.commodityCode"/> 
+                    <td><form:input type="text" id="commcode" style="width:100%" name="commcode" path="ulDdetails.commodityCode"/> 
                       </td>
 						</tr>
 					</table>
@@ -447,27 +453,27 @@ th, td {
 				<tr>
 					<td>
 						<table>
-							<tr>
-								<td>Origin</td>
-								<td>Destination</td>
-								<td>Flight Date</td>
-								<td>Flight Number</td>
-							</tr>
-							<tr>
-								 <td><input type="text" id="Origin" name="origin" path="basicBookingDetails.origin"/>
-						</td>
-						<td><input type="text" id="destination" name="destination" path="basicBookingDetails.destination"/></td>
-						<td> <input type="text" id="shippingDate" name="shippingDate" path="basicBookingDetails.shippingDate"/>
-						</td>
-						<td><input type="text" id="flightNumber" name="flightNumber" path="basicBookingDetails.flightNumber"/></td> 
+					<tr>
+						<td>Origin</td>
+						<td>Destination</td>
+						<td>Flight Date</td>
+						<td>Flight NO</td>
 					</tr>
-						</table>
+					<tr>
+						 <td><form:input type="text" id="Origin" name="origin" path="basicBookingDetails.flightDetailsOrigin"/>
+						</td>
+						<td><form:input type="text" id="destination" name="destination" path="basicBookingDetails.flightDetailsDestination"/></td>
+						<td><form:input type="text" id="flightDate" name="flightDate" path="basicBookingDetails.flightDate"/>
+						</td>
+						<td><form:input type="text" id="flightNumber" name="flightNumber" path="basicBookingDetails.flightNumber"/></td> 
+					</tr>
+				</table>
 					</td>
 				</tr>
 			</table>
 
 		</div>
-			 <input type="submit" class="btn btn-success"
+			 <input type="submit" class="btn btn-success" 
 			value="Submit">
 </form:form>
 

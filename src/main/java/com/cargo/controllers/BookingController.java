@@ -43,9 +43,24 @@ public class BookingController {
 
 	@RequestMapping(value = "/booking", method = { RequestMethod.POST })
 	public String saveBookingDetails(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
+		
+		if((bookingWrapper.getBasicBookingDetails().getOrigin().equals(bookingWrapper.getBasicBookingDetails().getFlightDetailsOrigin()))
+				&& (bookingWrapper.getBasicBookingDetails().getDestination().equals(bookingWrapper.getBasicBookingDetails().getFlightDetailsDestination()))
+				&& (bookingWrapper.getBasicBookingDetails().getShippingDate().equals(bookingWrapper.getBasicBookingDetails().getFlightDate()))) {
 		bookingService.saveBookingDeatils(bookingWrapper);
+		System.out.println(bookingWrapper.getBasicBookingDetails());
+		 System.out.println(bookingWrapper.getBulkBooking());
+		 System.out.println(bookingWrapper.getUlDdetails());
+		 System.out.println("flightdate" +bookingWrapper.getBasicBookingDetails().getFlightDate());
+		 System.out.println("shipment date" +bookingWrapper.getBasicBookingDetails().getShippingDate());
+		 
 		model.addAttribute("bookingWrapper", bookingWrapper);
 		return "BookingPage";
+		}
+		else {
+			model.addAttribute("errorMessage", "Origin,Destination and Flight date should be same as Shipment details");
+			return "BookingPage";
+		}
 	}
 
 	
