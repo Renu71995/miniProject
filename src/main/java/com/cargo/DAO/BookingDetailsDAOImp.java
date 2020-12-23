@@ -37,11 +37,9 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
         try {
         	
           BasicBookingDetails basicBookingDetails=bookingWrapper.getBasicBookingDetails();
+          basicBookingDetails.setAwbNumber();
           basicBookingDetails.setUbrNumber(basicBookingDetails.getOrigin(),basicBookingDetails.getDestination(),ThreadLocalRandom.current().nextInt());
            basicBookingDetails=bookingDetailsRepository.save(bookingWrapper.getBasicBookingDetails());
-          
-//            bookingWrapper.getUlDdetails().forEach(s->ulDdetailsRepository.save(s));
-//            bookingWrapper.getBulkBooking().forEach(s->bulBookingRepository.save(s));
           	ULDdetails ulDdetails=ulDdetailsRepository.setUldValues(basicBookingDetails.getAwbNumber(),bookingWrapper.getUlDdetails());
             ulDdetailsRepository.save(ulDdetails);
             BulkBooking bulkBooking=bulBookingRepository.setAWBValue(basicBookingDetails.getAwbNumber(), bookingWrapper.getBulkBooking());
