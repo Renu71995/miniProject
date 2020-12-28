@@ -3,13 +3,11 @@ package com.cargo.entities;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,21 +24,21 @@ public class FlightDetails implements Serializable {
 	private String destination;
 	private String shipmentDate;
 	private boolean isManifested;
-	@Temporal(value= TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date std;
-	@Temporal(value= TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date sta;
-	@Temporal(value= TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date atd;
-	@Temporal(value= TemporalType.TIMESTAMP)
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date ata;
 //	@OneToMany(mappedBy = "flightDetails")
 //	List<BasicBookingDetails> basicBookingDetailsList;
 
 	public FlightDetails(Integer flightId, String flightNumber, String origin, String destination, String shipmentDate,
 			boolean isManifested, Timestamp std, Timestamp sta, Timestamp atd, Timestamp ata
-			//,List<BasicBookingDetails> basicBookingDetailsList
-			) {
+	// ,List<BasicBookingDetails> basicBookingDetailsList
+	) {
 		super();
 		this.flightId = flightId;
 		this.flightNumber = flightNumber;
@@ -52,9 +50,10 @@ public class FlightDetails implements Serializable {
 		this.sta = sta;
 		this.atd = atd;
 		this.ata = ata;
-		//this.basicBookingDetailsList = basicBookingDetailsList;
+		// this.basicBookingDetailsList = basicBookingDetailsList;
 	}
-	public FlightDetails(){
+
+	public FlightDetails() {
 	}
 
 	public Integer getFlightId() {

@@ -1,16 +1,11 @@
 package com.cargo.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class ULDdetails implements Serializable {
@@ -25,15 +20,15 @@ public class ULDdetails implements Serializable {
 	private Integer noOfUlds;
 	private Float uldWeight;
 	private String commodityCode;
-	
+
 //	@ManyToOne
 //	@JoinColumn(name="basic_uldBooking")
 //	private BasicBookingDetails basic_uldBooking;
-	
+
 	public ULDdetails(Integer uldId, Integer awbNumber, String uldType, Integer noOfUlds, Float uldWeight,
 			String commodityCode
-		//	, BasicBookingDetails basicBookingDetails
-			) {
+	// , BasicBookingDetails basicBookingDetails
+	) {
 		super();
 		this.uldId = uldId;
 		this.awbNumber = awbNumber;
@@ -41,17 +36,17 @@ public class ULDdetails implements Serializable {
 		noOfUlds = noOfUlds;
 		this.uldWeight = uldWeight;
 		this.commodityCode = commodityCode;
-	//	this.basic_uldBooking = basicBookingDetails;
+		// this.basic_uldBooking = basicBookingDetails;
 	}
 
 	public ULDdetails() {
-	// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub
 	}
-	
-	public ULDdetails setUldValues(Integer awbNumber,ULDdetails ulDdetails){
-           ulDdetails.awbNumber=awbNumber;
-           return ulDdetails;
-		
+
+	public ULDdetails setUldValues(Integer awbNumber, ULDdetails ulDdetails) {
+		ulDdetails.awbNumber = awbNumber;
+		return ulDdetails;
+
 	}
 
 	public Integer getUldId() {
@@ -77,8 +72,6 @@ public class ULDdetails implements Serializable {
 	public void setUldType(String uldType) {
 		this.uldType = uldType;
 	}
-
-	
 
 	public Integer getNoOfUlds() {
 		return noOfUlds;
@@ -120,9 +113,8 @@ public class ULDdetails implements Serializable {
 	public String toString() {
 		return "ULDdetails [uldId=" + uldId + ", awbNumber=" + awbNumber + ", uldType=" + uldType + ", NoOfUlds="
 				+ noOfUlds + ", uldWeight=" + uldWeight + ", commodityCode=" + commodityCode + ", basicBookingDetails="
-				//+ basic_uldBooking 
+				// + basic_uldBooking
 				+ "]";
 	}
-	
-	
+
 }
