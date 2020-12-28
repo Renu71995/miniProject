@@ -1,13 +1,10 @@
 package com.cargo.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cargo.DAO.BookingDetailsDAO;
 import com.cargo.entities.BookingWrapper;
-import com.cargo.entities.FlightDetails;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -26,8 +23,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public List<FlightDetails> getFlightDetails(String origin, String destination, String shipmentDate) {
-		return bookingDetailsDAO.getFlightDetails(origin, destination, shipmentDate);
+	public BookingWrapper getFlightDetails(BookingWrapper bookingWrapper) {
+	return bookingDetailsDAO.getFlightDetails(bookingWrapper);
 
-	}
+	 }
 }

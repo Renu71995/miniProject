@@ -11,11 +11,23 @@ public class BookingWrapper {
 	private BulkBooking bulkBooking;
 	private ShipperDetails shipperDetails;
 	private ConsignmentDetails consignmentDetails;
+	private FlightDetails flightDetails;
 
 	public BookingWrapper() {
 		// TODO Auto-generated constructor stub
 
 	}
+	
+
+	public FlightDetails getFlightDetails() {
+		return flightDetails;
+	}
+
+
+	public void setFlightDetails(FlightDetails flightDetails) {
+		this.flightDetails = flightDetails;
+	}
+
 
 	public BasicBookingDetails getBasicBookingDetails() {
 		return basicBookingDetails;

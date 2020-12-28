@@ -28,6 +28,11 @@
 		$("#flightDate").datepicker();
 	});
 </script>
+<script>
+	$(function() {
+		$("#Availableflightdate").datepicker();
+	});
+</script>
 <style>
 .center {
 	padding: 100px 30px 30px 30px;
@@ -444,8 +449,11 @@ th, td {
 				<tr>
 					<td>
 
-						<button onclick="openForm()" class="btn btn-info">Select
-							Flight</button>
+					<!-- 	<button onclick="openForm()" class="btn btn-info">Select
+							Flight</button> -->
+							
+							<input type="button"  id="SearchFlightsButton" class="btn btn-warning"	
+				value="SearchFlights">
 
 					</td>
 
@@ -473,7 +481,7 @@ th, td {
 			</table>
 
 		</div>
-			 <input type="submit" class="btn btn-success" 
+			 <input type="submit" id="mainSubmitButton" class="btn btn-success" 
 			value="Submit">
 </form:form>
 
@@ -484,21 +492,34 @@ th, td {
       </div> -->
 
 	</div>
+	
+	<script>	
+var form = document.getElementById('form2');	
+document.getElementById('SearchFlightsButton').onclick = function() {	
+		
+	document.getElementById("popupForm").style.display = "block";	
+    	
+}	
+
+</script>
+	
 		<div class="selectFlightPopup">
 			<div class="formPopup" id="popupForm">
-				<form action="/action_page.php" class="formContainer">
+			
+<form:form action="/getFlights" modelAttribute="bookingWrapper" method="GET" class="formContainer">
+				
 					<h2>Select Flight</h2>
-					<label for="origin"> <strong>Origin</strong>
-					</label> <input type="text" id="origin" name="origin" required> <label
-						for="destination"> <strong>Destination</strong>
-					</label> <input type="text" id="destination" name="destination" required>
+					 <label for="origin"> <strong>Origin</strong></label> 
+					<form:input type="text" id="flightorigin" name="flightorigin" path="flightDetails.origin"/>
+					 <label for="destination"> <strong>Destination</strong></label>
+					<form:input type="text" id="flightdestination" name="flightdestination" path="flightDetails.destination"/>
 					<label for="flightDate"> <strong>Flight Date</strong>
-					</label> <input type="date" id="flightDate" name="flightDate" required>
+					</label> <form:input type="text" id="Availableflightdate" name="flightdate" path="flightDetails.shipmentDate"/>
 					<br>
 					<br>
 					<button type="submit" class="btn">Select Flights</button>
 					<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-				</form>
+				</form:form>
 			</div>
 		</div>
 		<script>
