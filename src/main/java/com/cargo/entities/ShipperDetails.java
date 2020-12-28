@@ -20,7 +20,6 @@ public class ShipperDetails implements Serializable {
 	private String shipperAddress;
 	private String shipperCountry;
 	private String shipperCity;
-	 
 
 	public ShipperDetails(Integer shipperCode, String shipperName, String shipperAddress, String shipperCountry,
 			String shipperCity) {
@@ -33,7 +32,7 @@ public class ShipperDetails implements Serializable {
 	}
 
 	public ShipperDetails() {
-		
+
 	}
 
 	public Integer getShipperCode() {
@@ -75,6 +74,7 @@ public class ShipperDetails implements Serializable {
 	public void setShipperCity(String shipperCity) {
 		this.shipperCity = shipperCity;
 	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -84,6 +84,5 @@ public class ShipperDetails implements Serializable {
 		return "ShipperDetails [shipperCode=" + shipperCode + ", shipperName=" + shipperName + ", shipperAddress="
 				+ shipperAddress + ", shipperCountry=" + shipperCountry + ", shipperCity=" + shipperCity + "]";
 	}
-	
 
 }

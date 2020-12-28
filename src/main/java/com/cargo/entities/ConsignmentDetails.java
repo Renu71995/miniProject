@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ConsignmentDetails implements Serializable{
-	
+public class ConsignmentDetails implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class ConsignmentDetails implements Serializable{
 	private String consignmentAddress;
 	private String consignmentCountry;
 	private String consignmentCity;
- 
+
 	public ConsignmentDetails(Integer consignmentCode, String consignmentName, String consignmentAddress,
 			String consignmentCountry, String consignmentCity) {
 		super();
@@ -30,7 +30,7 @@ public class ConsignmentDetails implements Serializable{
 	}
 
 	public ConsignmentDetails() {
-	
+
 	}
 
 	public Integer getConsignmentCode() {
@@ -72,10 +72,10 @@ public class ConsignmentDetails implements Serializable{
 	public void setConsignmentCity(String consignmentCity) {
 		this.consignmentCity = consignmentCity;
 	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 	@Override
 	public String toString() {
@@ -84,5 +84,4 @@ public class ConsignmentDetails implements Serializable{
 				+ ", consignmentCity=" + consignmentCity + "]";
 	}
 
-	
 }
