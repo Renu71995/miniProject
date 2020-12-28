@@ -30,7 +30,6 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
     @Autowired
     FlightDetailsRepository flightDetailsRepository;
 
-    @Override
     public String saveBookingDeatils(BookingWrapper bookingWrapper) {
          String msg="";
 
@@ -53,7 +52,6 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
         return  msg;
     }
 
-    @Override
     public BookingWrapper getBookingData(int awbNumber) {
         BookingWrapper  bookingWrapper=new BookingWrapper();
 
@@ -68,7 +66,6 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
         return bookingWrapper;
     }
 
-    @Override
     public List<FlightDetails> getFlightDetails(String origin, String destination, String shipmentDate) {
         return flightDetailsRepository.findflight(origin,destination,shipmentDate);
     }
