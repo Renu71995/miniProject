@@ -1,6 +1,5 @@
 package com.cargo.DAO;
 
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +68,18 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
 	}
 
 	@Override
-	public List<FlightDetails> getFlightDetails(String origin, String destination, String shipmentDate) {
-		return flightDetailsRepository.findflight(origin, destination, shipmentDate);
+	public BookingWrapper getFlightDetails(BookingWrapper bookingWrapper) {
+	BasicBookingDetails basicBookingDetails = new BasicBookingDetails();
+	FlightDetails flightdetails= flightDetailsRepository.findflight(bookingWrapper.getFlightDetails().getOrigin(),
+	bookingWrapper.getFlightDetails().getDestination(),bookingWrapper.getFlightDetails().getShipmentDate());
+	basicBookingDetails.setFlightDetailsOrigin(flightdetails.getOrigin());
+	basicBookingDetails.setFlightDetailsDestination(flightdetails.getDestination());
+	basicBookingDetails.setFlightDate(flightdetails.getShipmentDate());
+	basicBookingDetails.setFlightNumber(flightdetails.getFlightNumber());
+	bookingWrapper.setBasicBookingDetails(basicBookingDetails);
+	return bookingWrapper;
 	}
 }
+	
+	
+
