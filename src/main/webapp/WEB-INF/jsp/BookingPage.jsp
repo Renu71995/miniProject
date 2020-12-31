@@ -18,11 +18,14 @@
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 	$(function() {
 		$("#shippingDate").datepicker();
 	});
 </script>
+
+
 <script>
 	$(function() {
 		$("#flightDate").datepicker();
@@ -33,10 +36,67 @@
 		$("#Availableflightdate").datepicker();
 	});
 </script>
+
+<script>
+$(document).ready(function() {
+
+        $("#dataTable2").find("*").attr("disabled", "disabled");
+        if ($("#awbn").val() == 0)
+        $("#awbn").attr("value","");
+
+	function chooseBulk(){
+		var isChecked = $("#r1").prop('checked');
+                if (isChecked == true){
+                                   
+                  $("#dataTable").find("*").removeAttr('disabled');
+        //          $("#dataTable2").find("*").attr("innerHTML","");
+
+                    $("#uldtype").val('');
+                    $("#noofulds").val('');
+                   $("#uldweight").val('');
+                   $("#commcode").val('');
+                  $("#dataTable2").find("*").attr("disabled", "disabled");
+                  
+             //     $('#dataTable2 tr').each(function(i) {
+               //       if (i === 0) return; // skip header row
+              //       $(this).children().eq(0).value = "";
+             //        $(this).children().eq(1).value = "";
+              //       $(this).children().eq(2).value = "";
+              //       $(this).children().eq(3).value = "";
+             //     });
+                  
+                }
+	}
+
+	function chooseULD(){
+		var isChecked = $("#r2").prop('checked');
+                if (isChecked == true){
+                 
+                  $("#dataTable2").find("*").removeAttr('disabled');
+                  $("#commodityCode").val('');
+                  $("#pieceNumber").val('');
+                  $("#weight").val('');
+                  $("#volume").val('');
+                  $("#dataTable").find("*").attr("disabled", "disabled");
+                  
+                }
+	}
+
+	$("#r1").click(function(){
+		chooseBulk();
+	});
+
+       $("#r2").click(function(){
+		chooseULD();
+	});
+
+});
+</script>
+
 <style>
 .center {
 	padding: 100px 30px 30px 30px;
-	border: 3px solid black;
+	border: 2px solid black;
 	text-align: center;
 }
 
@@ -46,19 +106,19 @@
 }
 
 .inner {
-	border: 2px solid black;
-	padding: 30px 0px 30px 30px;
+	border: 1px solid black;
+	padding: 30px 0px 40px 30px;
 	float: center;
 	border-radius: 2px;
 }
 
 .round {
-	border: 2px solid black;
+	border: 1px solid black;
 	border-radius: 12px;
 	width: 48%;
 	Text-align: left;
 	float: left;
-	padding-left: 25px;
+	padding: 10px;
 }
 
 table, th, td {
@@ -147,6 +207,7 @@ th, td {
 .row {
 	display: flex;
 	justify-content: space-around;
+	padding-right: 20px;
 }
 
 .column {
@@ -169,11 +230,70 @@ th, td {
 	color: white;
 }
 </style>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 	crossorigin="anonymous"></script>
 <SCRIPT language="javascript">
+
+function validateSearch() {
+	  
+	  var x = document.forms["searchform"]["awbn"].value;
+	  var y = document.forms["searchform"]["ubrn"].value;
+	  if ((x == "") && (y == "")) {
+	    alert('Please enter AWB number ! ');
+	    return false;
+	  }
+	}
+function validateFields()
+{
+	var cansubmit = true;
+	
+	var ele = document.getElementById('r1');
+	document.getElementById('awbn').value = "";
+	document.getElementById('ubrn')value = "";
+    
+
+	if (ele.checked == true){
+		var table = document.getElementById('dataTable');
+		var row = table.rows;
+		
+		var c = 0;
+		 while(cell=row[1].cells[c++])
+		  {
+			 var val = cell.childNodes[0].value;
+			 if (val  == "")
+		    cansubmit = false;
+		  }
+	}
+	else{
+		var table = document.getElementById('dataTable2');
+		var row = table.rows;
+		
+		var c = 0;
+		 while(cell=row[1].cells[c++])
+		  {
+			 var val = cell.childNodes[0].value;
+			 if (val  == "")
+		    cansubmit = false;
+		  }
+	}
+	
+    
+/*
+    for (var i = 0; i < f.length; i++) {
+    	
+        if (f[i].value.length == 0) cansubmit = false;
+    }
+*/
+    if (cansubmit == false) {
+        alert('Please complete the Bulk / ULD details');
+        return false;
+    }
+    else return true;
+}
+
 	function addRow(tableid) {
 
 		var table = document.getElementById(tableid);
@@ -242,25 +362,62 @@ th, td {
 </SCRIPT>
 </Head>
 
+<!-- Header -->
+
+<header>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand" href="#">iCargo Demo</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="#">Maintain Booking</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">AWB Execution</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">AWB Acceptance</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Export Manifest</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Flight Arrival</a>
+</li>
+ 
+</ul>
+</div>
+</nav>
+</header>
+
+<!-- End of Header -->
+
 <Body>
 
 	<div class="center">
-		 <form:form action="/booking" method="get"
-		modelAttribute="bookingWrapper" class="inner">
+		 <form:form action="/booking" method="get" name = "searchform" id = "searchform" class = "inner"
+		modelAttribute="bookingWrapper" onsubmit = "return validateSearch()">
 
 			<label for="awbn">AWB Number:</label>
-			<form:input type="text" id="awbn" name="awbn" maxlength="11" size="11"
+			<form:input type="number" id="awbn" name="awbn" maxlength="11" size="11"
 			path="basicBookingDetails.awbNumber" />
 			 <label for="ubr">UBR
 				Number:</label>
-				<form:input type="text" id="ubrn" name="ubrn" path="basicBookingDetails.ubrNumber" />
+				<form:input type="text" id="ubrn" name="ubrn" pattern="([A-Z]{6}-[0-9]+)" maxlength="20" size="20" path="basicBookingDetails.ubrNumber" />
 				 <input
 				type="submit" class="btn btn-primary" value="New/List">
 
 		</form:form> 
 
 		<font color="red">${errorMessage}</font>
-		<form:form action="/booking" modelAttribute="bookingWrapper" method="POST"  class="inner" name="form1">
+
+		<form:form action="/booking" modelAttribute="bookingWrapper" method="POST"  name="form1" id = "form1" onsubmit = "return validateFields()">
+		
+		<div class = "inner">
+
 
 			<p class="left">
 				<strong>SHIPMENT DETAILS</strong>
@@ -292,7 +449,7 @@ th, td {
 
 			<div style="width: 40%; Text-align: left; float: left;">
 				<label for="ShipingDate">Shiping Date:</label>  <form:input type="text"
-			id="shippingDate" name="shippingDate" path="basicBookingDetails.shippingDate"/>
+			id="shippingDate" name="shippingDate" required = "required" path="basicBookingDetails.shippingDate"/>
 			</div>
 
 
@@ -338,10 +495,10 @@ th, td {
 
 			<div style="width: 30%; Text-align: left; float: left;">
 				<label for="customerCode">Customer Code:</label> 	<form:select name="customerCode" id="customerCode" path="basicBookingDetails.customerCode">
-			<form:option value="MEX">MEX</form:option>
-			<form:option value="JFK">JFK</form:option>
-			<form:option value="MIA">MIA</form:option>
-			<form:option value="LAX">LAX</form:option>
+			<form:option value="MEX">CUSTMEX</form:option>
+			<form:option value="JFK">CUSTJFK</form:option>
+			<form:option value="MIA">CUSTMIA</form:option>
+			<form:option value="LAX">CUSTLAX</form:option>
 		</form:select>
 			</div>
 
@@ -356,11 +513,14 @@ th, td {
 			id="sclass" path="basicBookingDetails.serviceClass">
 			<form:option value="FOC">Free of Charge</form:option>
 			<form:option value="COMAT">COMAT</form:option>
+			
 		</form:select>
+		<div><br></br></div>
 			</div>
-			</br>
-
-	
+			
+      
+	</div>
+	<br></br>
 
 
 		<div class="inner">
@@ -371,15 +531,15 @@ th, td {
 			<div class="row">
 
 				<div class="round">
-					<P>
-						<strong>BULK BOOKING</strong>
-					</P>
+
+                      <input type="radio" id="r1" name="myOptions" value="BULK" checked />
+                       <label for="r1"><strong>BULK BOOKING</strong></label>
 					<!-- <input type="button" value="+" class="plusbutton btn btn-primary"
 						onclick="addRow('dataTable')" style="margin: 1%" /> <input
 						type="button" value=" - " class="minusbutton btn btn-danger"
 						onclick="deleteRow('dataTable')" style="margin: 1%" /> <br> -->
 
-					<table id="dataTable" border="1">
+					<table id="dataTable" name = "dataTable" border="1">
 						<tr>
 							
 							<td>CommCode</td>
@@ -390,13 +550,15 @@ th, td {
 						<tr>
 							<td><form:input type="text" style="width:100%" id="commodityCode" name="commodityCode"   path="bulkBooking.commodityCode"/>
                     </td> 
-                     <td><form:input type="text" id="pieceNumber" style="width:100%" name="pieceNumber" path="bulkBooking.pieceNumber"/>
+
+                     <td><form:input type="number" id="pieceNumber" min = "0" style="width:100%" name="pieceNumber" path="bulkBooking.pieceNumber"/>
                    
                     </td>
-                    <td><form:input type="text" id="weight" style="width:100%" name="weight"  path="bulkBooking.weight"/>
+                    <td><form:input type="number" min = "0" step = "any" id="weight" style="width:100%" name="weight"  path="bulkBooking.weight"/>
                  
                     </td>
-                    <td><form:input type="text" id="volume" style="width:100%" name="volume" path="bulkBooking.volume"/>
+                    <td><form:input type="number" min = "0" step = "any" id="volume" style="width:100%" name="volume" path="bulkBooking.volume"/>
+
                  
                     </td>
 						</tr>
@@ -409,15 +571,15 @@ th, td {
 
 				<div class="round">
 
-					<P>
-						<strong>ULD BOOKING</strong>
-					</P>
+
+                       <input type="radio" id="r2" name="myOptions" value="ULD" />  
+                       <label for="r1"><strong>ULD BOOKING</strong></label>
 				<!-- 	<INPUT type="button" value="+" class="plusbutton btn btn-primary"
 						onclick="addRow('dataTable2')" style="margin: 1%" /> <INPUT
 						type="button" value=" - " class="minusbutton btn btn-danger"
 						onclick="deleteRow('dataTable2')" style="margin: 1%" /> -->
 
-					<table id="dataTable2" border="1">
+					<table id="dataTable2" name = "dataTable2" border="1">
 						<tr>
 							
 							<td>Type/Group</td>
@@ -427,9 +589,11 @@ th, td {
 						</tr>
 						<tr>
 							  <td><form:input type="text" id="uldtype" style="width:100%" name="uldtype" path="ulDdetails.uldType"/> </td>
-                    <td><form:input type="text" id="noofulds" style="width:100%" name="noofulds" path="ulDdetails.noOfUlds"/>
+
+                    <td><form:input type="number" min = "0" id="noofulds" style="width:100%" name="noofulds" path="ulDdetails.noOfUlds"/>
                      </td>
-                    <td><form:input type="text" id="uldweight" style="width:100%" name="uldweight" path="ulDdetails.uldWeight"/>
+                    <td><form:input type="number" id="uldweight" min = "0" step = "any" style="width:100%" name="uldweight" path="ulDdetails.uldWeight"/>
+
                      </td>
                     <td><form:input type="text" id="commcode" style="width:100%" name="commcode" path="ulDdetails.commodityCode"/> 
                       </td>
@@ -468,12 +632,12 @@ th, td {
 						<td>Flight NO</td>
 					</tr>
 					<tr>
-						 <td><form:input type="text" id="Origin" name="origin" path="basicBookingDetails.flightDetailsOrigin"/>
+						 <td><form:input type="text" id="Origin" name="origin" maxlength="3" size="3" pattern="[A-Z]{3}" required = "required" path="basicBookingDetails.flightDetailsOrigin"/>
 						</td>
-						<td><form:input type="text" id="destination" name="destination" path="basicBookingDetails.flightDetailsDestination"/></td>
-						<td><form:input type="text" id="flightDate" name="flightDate" path="basicBookingDetails.flightDate"/>
+						<td><form:input type="text" id="destination" name="destination" maxlength="3" size="3" pattern="[A-Z]{3}" required = "required" path="basicBookingDetails.flightDetailsDestination"/></td>
+						<td><form:input type="text" id="flightDate" name="flightDate" required = "required" path="basicBookingDetails.flightDate"/>
 						</td>
-						<td><form:input type="text" id="flightNumber" name="flightNumber" path="basicBookingDetails.flightNumber"/></td> 
+						<td><form:input type="text" id="flightNumber" name="flightNumber" required = "required" maxlength="7" pattern="([A-Z0-9]{2} [0-9]{4})" path="basicBookingDetails.flightNumber"/></td> 
 					</tr>
 				</table>
 					</td>
@@ -481,7 +645,9 @@ th, td {
 			</table>
 
 		</div>
+            <br> </br>
 			 <input type="submit" id="mainSubmitButton" class="btn btn-success" 
+
 			value="Submit">
 </form:form>
 
@@ -533,4 +699,15 @@ document.getElementById('SearchFlightsButton').onclick = function() {
 		<br> <br>
 </Body>
 
+<!-- Footer -->
+<footer>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand mx-auto" href="#">iCargo Demo</a>
+</nav>
+</footer>
 </Html>
+
+
+
+
+
