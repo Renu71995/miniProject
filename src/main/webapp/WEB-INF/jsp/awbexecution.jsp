@@ -14,10 +14,24 @@
 	crossorigin="anonymous">
 
 <title>Shipment/Consignment Details Tab</title>
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    if ($("#awbn").val() == 0)
+    $("#awbn").attr("value","");
+	});
+</script>
+
 <style>
 .center {
 	padding: 100px 30px 30px 30px;
-	border: 3px solid black;
+	border: 2px solid black;
 	text-align: center;
 }
 
@@ -38,7 +52,7 @@
 }
 
 .round {
-	border: 2px solid black;
+	border: 1px solid black;
 	border-radius: 12px;
 	width: 40%;
 	Text-align: left;
@@ -47,7 +61,7 @@
 }
 
 .inner {
-	border: 2px solid black;
+	border: 1px solid black;
 	/* width: 95.5%; */
 	float: center;
 	border-radius: 2px;
@@ -60,7 +74,7 @@
 }
 
 .round1 {
-	border: 2px solid black;
+	border: 1px solid black;
 	border-radius: 12px;
 	padding: 25px;
 	/* width: 95.5%; */
@@ -102,7 +116,25 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 	crossorigin="anonymous"></script>
+	
 <script language="javascript">
+
+function clearFields(){
+	
+	document.getElementById("awbn").value = "";
+
+	document.getElementById("ubrn").value = "";
+	
+}
+function validateSearch() {
+	  
+	  var x = document.forms["searchform"]["awbn"].value;
+	  var y = document.forms["searchform"]["ubrn"].value;
+	  if ((x == "") && (y == "")) {
+	    alert('Please enter AWB number ! ');
+	    return false;
+	  }
+	}
     
         function addShipmentRow(tableid) {
           var table = document.getElementById(tableid);
@@ -259,23 +291,55 @@
       </script>
 
 </Head>
+<!-- Header -->
+
+<header>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand" href="#">iCargo Demo</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="#">Maintain Booking</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">AWB Execution</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">AWB Acceptance</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Export Manifest</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Flight Arrival</a>
+</li>
+ 
+</ul>
+</div>
+</nav>
+</header>
+
+<!-- End of Header -->
 
 <Body>
 	<div class="center" id="outermostDiv">
 	 <form:form action="/awbexecution" method="get"
-		modelAttribute="bookingWrapper" class="inner">
+		modelAttribute="bookingWrapper" class="inner" name = "searchform" onsubmit = "return validateSearch()">
 
 			<label for="awbn">AWB Number:</label>
-		 <form:input type="text" id="awbn" name="awbn" maxlength="11" size="11"
+		 <form:input type="number" id="awbn" name="awbn" maxlength="11" size="11"
 			path="basicBookingDetails.awbNumber" />
-			 <label for="ubr">UBR
-				Number:</label>
-				<form:input type="text" id="ubrn" name="ubrn" path="basicBookingDetails.ubrNumber" />
+			 <label for="ubr">UBR Number:</label>
+				<form:input type="text" id="ubrn" name="ubrn" pattern="([A-Z]{6}-[0-9]+)" maxlength="20" size="20"
+ path="basicBookingDetails.ubrNumber" />
 			 	<input type="submit" class="btn btn-primary" value="List">
-			<input type="submit" class="btn btn-danger" value="Clear">
+			<input type="button" class="btn btn-danger" value="Clear" onClick = "clearFields()">
 
 		</form:form>
-
+         <br></br>
 	<%-- 	<form:form action="/awbexecution" method="get"
 			modelAttribute="bookingWrapper" class="center">
 			<label for="awbn">AWB Number:</label>
@@ -288,17 +352,17 @@
 			<input type="submit" class="btn btn-danger" value="Clear">
 	</form:from>	 --%>
 	<form:form action="/awbexecution/1" modelAttribute="bookingWrapper"  method="POST"  class="inner" name="form1">
-			<hr class="thick">
+		
 
 			<div class="divclass" id="originDiv">
 
 				<label for="origin">Origin:</label>
-				<form:input type="text" id="origin" name="origin"
+				<form:input type="text" id="origin" name="origin" maxlength="3" size="3" pattern="[A-Z]{3}" required="required"
 					path="basicBookingDetails.origin" />
 
 				<label for="destination">Destination:</label>
-				<form:input type="text" id="destination" name="destination"
-					path="basicBookingDetails.destination"></form:input>
+				<form:input type="text" id="destination" name="destination" maxlength="3" size="3" pattern="[A-Z]{3}" required="required"
+					path="basicBookingDetails.destination" ></form:input>
 
 				<label for="ServiceClass">Service Cargo Class:</label>
 				<form:select name="sclass" id="sclass"
@@ -310,10 +374,10 @@
 
 
 				<label for="SCC">SCC:</label>
-				<form:input path="basicBookingDetails.scc" type="text" id="scc"
+				<form:input path="basicBookingDetails.scc" type="text" id="scc" 
 					name="scc" />
 
-				<label for="Code">Code:</label> 
+				<label for="Code">Agent Code:</label> 
 				<form:input path="basicBookingDetails.agentCode" type="text" id="code"
 					name="code" />
 
@@ -323,7 +387,7 @@
 
 		<div id="shipperconsignmentDiv" class="inner">
 			<p class="left">
-				<strong>SHIPPER/CONSIGNMENT DETAILS</strong>
+				<strong>SHIPPER/CONSIGNEE DETAILS</strong>
 			</p>
 
 			<div id="outerDiv"
@@ -336,21 +400,21 @@
 
 
 					<label for="Code">Code:</label> <br>
-					<form:input type="text" id="code" name="code"
+					<form:input type="text" id="code" name="code" required = "required" 
 						path="shipperDetails.shipperCode"></form:input>
 					<br> <label for="Name">Name:</label> <br>
-					<form:input type="text" id="name" name="name"
+					<form:input type="text" id="name" name="name" required = "required" 
 						path="shipperDetails.shipperName"></form:input>
 					<br> <label for="Address">Address:</label> <br>
-					<form:input type="text" id="address" name="address"
+					<form:input type="text" id="address" name="address" required = "required" 
 						path="shipperDetails.shipperAddress"></form:input>
 					<br> <label for="City">City:</label> <br>
-					<form:input type="text" id="city" name="city"
+					<form:input type="text" id="city" name="city" required = "required" 
 						path="shipperDetails.shipperCity"></form:input>
 					<br> <label for="Country">Country:</label> <br>
-					<form:input type="text" id="country" name="country"
+					<form:input type="text" id="country" name="country" required = "required" 
 						path="shipperDetails.shipperCountry"></form:input>
-					<br>
+					<br></br>
 
 
 				</div>
@@ -360,24 +424,24 @@
 				<div class="round" id="innerDiv2">
 
 					<p class="left">
-						<strong>CONSIGNMENT DETAILS</strong>
+						<strong>CONSIGNEE DETAILS</strong>
 					</p>
 					<label for="Code">Code:</label> <br>
-					<form:input type="text" id="code1" name="code1"
+					<form:input type="text" id="code1" name="code1" required = "required" 
 						path="consignmentDetails.consignmentCode"></form:input>
 					<br> <label for="Name">Name:</label> <br>
-					<form:input type="text" id="name1" name="name1"
+					<form:input type="text" id="name1" name="name1" required = "required" 
 						path="consignmentDetails.consignmentName"></form:input>
 					<br> <label for="Address">Address:</label> <br>
-					<form:input type="text" id="address1" name="address1"
+					<form:input type="text" id="address1" name="address1" required = "required" 
 						path="consignmentDetails.consignmentAddress"></form:input>
 					<br> <label for="City">City:</label> <br>
-					<form:input type="text" id="city1" name="city1"
+					<form:input type="text" id="city1" name="city1" required = "required" 
 						path="consignmentDetails.consignmentCity"></form:input>
 					<br> <label for="Country">Country:</label> <br>
-					<form:input type="text" id="country1" name="country1"
+					<form:input type="text" id="country1" name="country1" required = "required" 
 						path="consignmentDetails.consignmentCountry"></form:input>
-					<br>
+					<br></br>
 
 				</div>
 				<!-- End of innerDiv2 -->
@@ -387,10 +451,8 @@
 
 		</div>
 		<!-- End of shipperconsignmentDiv -->
-
-		<!-- Keerthana -->
-
-		<div class="inner" id="outerDiv1">
+      <br></br>
+	<div class="inner" id="outerDiv1">
 			<p class="left">
 				<strong>SHIPMENT DETAILS</strong>
 			</p>
@@ -428,15 +490,16 @@
 							<tr>
 
 								<TD><INPUT type="checkbox" name="chk" /></TD>
-								<td><form:input type="text" id="pieces" name="pieces"
+								<td><form:input type="number" min="0" id="pieces" name="pieces" required="required"
 										path="bulkBooking.pieceNumber"></form:input></td>
-								<td><form:input type="text" id="weight" name="weight"
+								<td><form:input type="number" min="0" step = "any" id="weight" name="weight" required="required"
 										path="bulkBooking.weight"></form:input></td>
-								<td><form:input type="text" id="volume" name="volume"
+								<td><form:input type="number" min="0" step = "any" id="volume" name="volume"
 										path="bulkBooking.volume"></form:input></td>
-								<td><form:input type="text" id="cmdty" name="cmdty"
-										path="bulkBooking.commodityCode"></form:input></td>
-								<td><input type="text" id="uld" name="uld"></td>
+								<td><form:input type="text" id="cmdty" name="cmdty" required = "required" 
+								    
+								    	path="bulkBooking.commodityCode"></form:input></td> 
+								<td><input type="text" id="uld" name="uld"></td> 
 
 							</tr>
 						</table>
@@ -458,8 +521,7 @@
             </textarea>
 				</form>
 			</div> --%>
-			<!-- End of Keerthana code-->
-			<!-- Aishwarya -->
+
 			<br>
 			<div class="inner">
 				<p class="left">
@@ -484,11 +546,11 @@
 								</tr>
 								<tr>
 									<TD><INPUT type="checkbox" name="chk" /></TD>
-									<td><form:input type="text" id="pcs" name="pcs" size="7%" path="bulkBooking.pieceNumber" />
+									<td><form:input type="number" min="0" id="pcs" name="pcs" size="7%" path="bulkBooking.pieceNumber" />
 									</td>
-									<td><form:input type="text" id="weight" name="weight"
+									<td><form:input type="number" min="0" step = "any" id="weight" name="weight"
 										size="15%" path="bulkBooking.weight" /></td>
-									<td><form:input type="text" id="volume" name="volume" path="bulkBooking.volume" />
+									<td><form:input type="number" min="0" step = "any" id="volume" name="volume" path="bulkBooking.volume" />
 									</td>
 									
 								</tr>
@@ -513,4 +575,12 @@
 	</div>
 	<!-- End of outermostDiv -->
 </Body>
+
+<!-- Footer -->
+<footer>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand mx-auto" href="#">iCargo Demo</a>
+</nav>
+</footer>
+
 </Html>
