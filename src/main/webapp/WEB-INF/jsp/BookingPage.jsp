@@ -398,6 +398,7 @@ function validateFields()
 <Body>
 
 	<div class="center">
+	<font color="red">${errorMessage1}</font>
 		 <form:form action="/booking" method="get" name = "searchform" id = "searchform" class = "inner"
 		modelAttribute="bookingWrapper" onsubmit = "return validateSearch()">
 
@@ -413,7 +414,7 @@ function validateFields()
 		</form:form> 
 
 		<font color="red">${errorMessage}</font>
-
+		<font color="red">${errorMessage3}</font>
 		<form:form action="/booking" modelAttribute="bookingWrapper" method="POST"  name="form1" id = "form1" onsubmit = "return validateFields()">
 		
 		<div class = "inner">
@@ -672,7 +673,7 @@ document.getElementById('SearchFlightsButton').onclick = function() {
 		<div class="selectFlightPopup">
 			<div class="formPopup" id="popupForm">
 			
-<form:form action="/getFlights" modelAttribute="bookingWrapper" method="GET" class="formContainer">
+<form:form action="/booking/getFlights" modelAttribute="bookingWrapper" method="GET" class="formContainer">
 				
 					<h2>Select Flight</h2>
 					 <label for="origin"> <strong>Origin</strong></label> 

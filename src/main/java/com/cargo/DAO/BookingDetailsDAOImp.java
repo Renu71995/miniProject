@@ -39,12 +39,18 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
 			basicBookingDetails.setUbrNumber(basicBookingDetails.getOrigin(), basicBookingDetails.getDestination(),
 					ThreadLocalRandom.current().nextInt());
 			basicBookingDetails = bookingDetailsRepository.save(bookingWrapper.getBasicBookingDetails());
+			System.out.println("IN DAO " + basicBookingDetails);
+			if(bookingWrapper.getBulkBooking() != null){
+				BulkBooking bulkBooking = bulBookingRepository.setAWBValue(basicBookingDetails.getAwbNumber(),
+					bookingWrapper.getBulkBooking());
+					bulBookingRepository.save(bulkBooking);
+			}
+			if(bookingWrapper.getUlDdetails() != null){
 			ULDdetails ulDdetails = ulDdetailsRepository.setUldValues(basicBookingDetails.getAwbNumber(),
 					bookingWrapper.getUlDdetails());
-			ulDdetailsRepository.save(ulDdetails);
-			BulkBooking bulkBooking = bulBookingRepository.setAWBValue(basicBookingDetails.getAwbNumber(),
-					bookingWrapper.getBulkBooking());
-			bulBookingRepository.save(bulkBooking);
+				ulDdetailsRepository.save(ulDdetails);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			msg = "Error Caught:" + e.getMessage();
@@ -52,33 +58,40 @@ public class BookingDetailsDAOImp implements BookingDetailsDAO {
 		return msg;
 	}
 
-	@Override
-	public BookingWrapper getBookingData(int awbNumber) {
-		BookingWrapper bookingWrapper = new BookingWrapper();
+    @Override
+    public BookingWrapper getBookingData(int awbNumber) throws Exception{
+        BookingWrapper bookingWrapper = new BookingWrapper();
+            bookingWrapper = new BookingWrapper();
+            BasicBookingDetails basicBookingDetails = bookingDetailsRepository.findById(awbNumber).get();
+            if(basicBookingDetails != null) {
+                bookingWrapper.setBasicBookingDetails(basicBookingDetails);
+            }
+            ULDdetails ulddetails = ulDdetailsRepository.findByAWB(awbNumber);
+            if(ulddetails != null) {
+                bookingWrapper.setUlDdetails(ulddetails);
+            }
+            BulkBooking bulkbooking = bulBookingRepository.findByAWB(awbNumber);
+            if(bulkbooking != null) {
+             bookingWrapper.setBulkBooking(bulBookingRepository.findByAWB(awbNumber));
+            }
 
-		try {
-			bookingWrapper = new BookingWrapper();
-			bookingWrapper.setBasicBookingDetails(bookingDetailsRepository.findById(awbNumber).get());
-			bookingWrapper.setUlDdetails(ulDdetailsRepository.findByAWB(awbNumber));
-			bookingWrapper.setBulkBooking(bulBookingRepository.findByAWB(awbNumber));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return bookingWrapper;
-	}
+ 
+
+        return bookingWrapper;
+    }
 
 	@Override
-	public BookingWrapper getFlightDetails(BookingWrapper bookingWrapper) {
-	BasicBookingDetails basicBookingDetails = new BasicBookingDetails();
-	FlightDetails flightdetails= flightDetailsRepository.findflight(bookingWrapper.getFlightDetails().getOrigin(),
-	bookingWrapper.getFlightDetails().getDestination(),bookingWrapper.getFlightDetails().getShipmentDate());
-	basicBookingDetails.setFlightDetailsOrigin(flightdetails.getOrigin());
-	basicBookingDetails.setFlightDetailsDestination(flightdetails.getDestination());
-	basicBookingDetails.setFlightDate(flightdetails.getShipmentDate());
-	basicBookingDetails.setFlightNumber(flightdetails.getFlightNumber());
-	bookingWrapper.setBasicBookingDetails(basicBookingDetails);
-	return bookingWrapper;
-	}
+    public BookingWrapper getFlightDetails(BookingWrapper bookingWrapper) throws Exception {
+    BasicBookingDetails basicBookingDetails = new BasicBookingDetails();
+    FlightDetails flightdetails= flightDetailsRepository.findflight(bookingWrapper.getFlightDetails().getOrigin(),
+    bookingWrapper.getFlightDetails().getDestination(),bookingWrapper.getFlightDetails().getShipmentDate());
+    basicBookingDetails.setFlightDetailsOrigin(flightdetails.getOrigin());
+    basicBookingDetails.setFlightDetailsDestination(flightdetails.getDestination());
+    basicBookingDetails.setFlightDate(flightdetails.getShipmentDate());
+    basicBookingDetails.setFlightNumber(flightdetails.getFlightNumber());
+    bookingWrapper.setBasicBookingDetails(basicBookingDetails);
+    return bookingWrapper;
+    }
 }
 	
 	

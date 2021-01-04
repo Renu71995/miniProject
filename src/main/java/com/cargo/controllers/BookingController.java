@@ -23,17 +23,27 @@ public class BookingController {
 		return "BookingPage";
 	}
 
-	@RequestMapping(value = "/booking", method = { RequestMethod.GET })
-	public String getBookingDetails(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
+    @RequestMapping(value = "/booking", method = { RequestMethod.GET })
+    public String getBookingDetails(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
 
-		int awbnumber = bookingWrapper.getBasicBookingDetails().getAwbNumber();
-		 bookingWrapper=bookingService.getBookingData(awbnumber);
-		 System.out.println(bookingWrapper.getBasicBookingDetails());
-		 System.out.println(bookingWrapper.getBulkBooking());
-		 System.out.println(bookingWrapper.getUlDdetails());
-		model.addAttribute("bookingWrapper",bookingWrapper);
-		return "BookingPage";
-	}
+ 
+
+        Integer awbnumber = bookingWrapper.getBasicBookingDetails().getAwbNumber();
+        if(bookingWrapper.getBasicBookingDetails() != null && awbnumber!= null && awbnumber != 0) {
+            try {
+         bookingWrapper=bookingService.getBookingData(bookingWrapper.getBasicBookingDetails().getAwbNumber());
+        model.addAttribute("bookingWrapper",bookingWrapper);
+            return "BookingPage";
+         } catch(Exception e)  {
+             model.addAttribute("errorMessage1", " Requested AWB number not available");
+                return "BookingPage";
+         }
+        }
+        else {
+            model.addAttribute("errorMessage1", " Awb should not be zero or an empty value");
+            return "BookingPage";
+        }
+    }
 
 	@RequestMapping(value = "/booking", method = { RequestMethod.POST })
 	public String saveBookingDetails(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
@@ -57,11 +67,17 @@ public class BookingController {
 		}
 	}
 	
-	@RequestMapping(value = "/getFlights", method = { RequestMethod.GET })
-	public String getFlights(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
-		bookingWrapper = bookingService.getFlightDetails( bookingWrapper);
-		model.addAttribute("flightnumber", bookingWrapper);
-		return "BookingPage";
+    @RequestMapping(value = "/booking/getFlights", method = { RequestMethod.GET })
+    public String getFlights(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper,Model model) {
+        System.out.println(bookingWrapper.getFlightDetails().getShipmentDate());
+        try {
+        bookingWrapper = bookingService.getFlightDetails( bookingWrapper);
+        model.addAttribute("flightnumber", bookingWrapper);
+        return "BookingPage";
+        } catch(Exception e) {
+            model.addAttribute("errorMessage3", "No flights available");
+            return "BookingPage";
+        }
 
-	}
+    }
 }

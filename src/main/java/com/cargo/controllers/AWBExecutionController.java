@@ -29,12 +29,17 @@ public class AWBExecutionController {
 	public String getBookingDetails(@ModelAttribute("bookingWrapper") BookingWrapper bookingWrapper, Model model) {
 
 		int awbnumber = bookingWrapper.getBasicBookingDetails().getAwbNumber();
+		try {
 		bookingWrapper = bookingService.getBookingData(awbnumber);
 		System.out.println(bookingWrapper.getBasicBookingDetails());
 		System.out.println(bookingWrapper.getBulkBooking());
 		System.out.println(bookingWrapper.getUlDdetails());
 		model.addAttribute("bookingWrapper", bookingWrapper);
 		return "awbexecution";
+		} catch(Exception e)  {
+	             model.addAttribute("errorMessage1", " requested AWB number not available");
+	                return "BookingPage";
+	         }
 	}
 
 	@RequestMapping(value = "/awbexecution/1", method = { RequestMethod.POST })
